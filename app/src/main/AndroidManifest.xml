@@ -10,13 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JoinUs">
         <activity
+            android:name=".auth.SignupActivity"
+            android:exported="false" />
+        <activity
             android:name=".EventListActivity"
             android:exported="false" />
         <activity
             android:name=".EventActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".auth.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

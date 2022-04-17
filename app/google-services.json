@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "698189254779",
+    "project_id": "cs5520final-671c3",
+    "storage_bucket": "cs5520final-671c3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:698189254779:android:ab43e17c27c7ff01ccd2de",
+        "android_client_info": {
+          "package_name": "edu.neu.madcourse.joinus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "698189254779-bnklqlagu8m62q4u73qehfvgh46pjtrh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaQWs8yoNWRrLFyhqv4nXOkPP0OMlK6uo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "698189254779-bnklqlagu8m62q4u73qehfvgh46pjtrh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
