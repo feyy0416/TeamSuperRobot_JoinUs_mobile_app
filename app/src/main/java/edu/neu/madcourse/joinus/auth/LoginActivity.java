@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.google.firebase.database.FirebaseDatabase;
 
+import edu.neu.madcourse.joinus.MainActivity;
 import edu.neu.madcourse.joinus.R;
 import edu.neu.madcourse.joinus.util.Utils;
 
@@ -43,6 +44,15 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btn_sign_in.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void signin() {

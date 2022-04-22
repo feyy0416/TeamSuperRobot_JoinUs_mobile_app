@@ -36,5 +36,4 @@ public class Event {
     public String getImageId() {
         return imageId;
     }
-
 }

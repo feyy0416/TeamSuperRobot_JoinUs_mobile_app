@@ -13,6 +13,9 @@
             android:name=".auth.SignupActivity"
             android:exported="false" />
         <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".EventListActivity"
             android:exported="false" />
         <activity

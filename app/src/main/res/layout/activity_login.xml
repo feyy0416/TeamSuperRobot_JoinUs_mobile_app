@@ -125,7 +125,7 @@
         android:ems="10"
         android:inputType="textPassword"
         android:minHeight="48dp"
-        android:text="1234567891011"
+        android:text="123456789"
         android:textColor="#787676"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
