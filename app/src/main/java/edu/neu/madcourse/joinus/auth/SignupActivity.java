@@ -3,7 +3,9 @@ package edu.neu.madcourse.joinus.auth;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,9 +25,9 @@ import edu.neu.madcourse.joinus.util.Utils;
 
 public class SignupActivity extends AppCompatActivity {
     Button btn_signup;
-    EditText email;
-    EditText password;
-    EditText repeatPassword;
+    EditText etEmail;
+    EditText etPassword;
+    EditText etRepeatPassword;
     private FirebaseDatabase mDatabase;
     private FirebaseAuth mAuth;
     
@@ -35,24 +37,25 @@ public class SignupActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         
         btn_signup = findViewById(R.id.btn_sign_up);
-        email = findViewById(R.id.et_email_input);
-        password = findViewById(R.id.et_password_input1);
-        repeatPassword = findViewById(R.id.et_password_input2);
+        etEmail = findViewById(R.id.et_email_input);
+        etPassword = findViewById(R.id.et_password_input1);
+        etRepeatPassword = findViewById(R.id.et_password_input2);
         mAuth = FirebaseAuth.getInstance();
 
-        Utils.setInputReset(email);
-        Utils.setInputReset(password);
-        Utils.setInputReset(repeatPassword);
+        Utils.setInputReset(etEmail);
+        Utils.setInputReset(etPassword);
+        Utils.setInputReset(etRepeatPassword);
         
         btn_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (password.getText().toString().equals(repeatPassword.getText().toString())){
+                signup();
+                /*if (etPassword.getText().toString().equals(repeatPassword.getText().toString())){
                     signup();
                 }else {
-                    Toast.makeText(SignupActivity.this, "The password entered twice does not match.", Toast.LENGTH_SHORT).show();
-                }
-
+                    Toast.makeText(SignupActivity.this, "Passwords do not match.",
+                            Toast.LENGTH_SHORT).show();
+                }*/
             }
         });
         
@@ -69,21 +72,40 @@ public class SignupActivity extends AppCompatActivity {
 //    }
 
     private void signup() {
-        mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
-                            Toast.makeText(SignupActivity.this, "Successfully Signed up!", Toast.LENGTH_SHORT).show();
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+        String email = etEmail.getText().toString();
+        String password = etPassword.getText().toString();
+        String repeatPassword = etRepeatPassword.getText().toString();
 
-                        }else {
-                            Toast.makeText(SignupActivity.this, "Sign up failed", Toast.LENGTH_SHORT).show();
-                            updateUI();
+        if (TextUtils.isEmpty(email)) {
+            etEmail.setError("Email cannot be empty");
+            etEmail.requestFocus();
+        } else if (TextUtils.isEmpty(password)) {
+            etPassword.setError("Passwords cannot be empty");
+            etPassword.requestFocus();
+        } else if (!repeatPassword.equals(password)) {
+            etRepeatPassword.setError("Passwords do not match");
+            etRepeatPassword.requestFocus();
+        } else {
+            mAuth.createUserWithEmailAndPassword(email, password)
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(SignupActivity.this, "Signed up Successfully!",
+                                        Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                updateUI(user);
+
+                            } else {
+                                Toast.makeText(SignupActivity.this,
+                                        "Sign up failed: " + task.getException().getMessage(),
+                                        Toast.LENGTH_SHORT).show();
+                                updateUI();
+                            }
                         }
-                    }
-                });
+                    });
+        }
     }
 
     private void updateUI(FirebaseUser user) {

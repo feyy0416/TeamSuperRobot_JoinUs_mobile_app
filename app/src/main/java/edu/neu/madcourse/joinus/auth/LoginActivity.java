@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
 import edu.neu.madcourse.joinus.MainActivity;
@@ -22,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView forgotPassword;
     TextView signup;
     FirebaseDatabase mDatabase;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,8 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.et_password_input1);
         forgotPassword = findViewById(R.id.link_forgot_password);
         signup = findViewById(R.id.link_sign_up);
+
+        mAuth = FirebaseAuth.getInstance();
 
         Utils.setInputReset(email);
         Utils.setInputReset(password);
@@ -57,4 +62,5 @@ public class LoginActivity extends AppCompatActivity {
 
     private void signin() {
     }
+
 }
