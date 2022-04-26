@@ -11,6 +11,7 @@ import android.location.Geocoder;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,15 +31,21 @@ import com.google.android.gms.location.LocationSettingsResponse;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import edu.neu.madcourse.joinus.auth.LoginActivity;
+
 public class MainActivity extends AppCompatActivity {
+    private TextView tvUsername;
     private TextView cityName;
     private RecyclerView hotEvents;
     private LocationRequest locationRequest;
+    //private Button btnLogOut;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +59,13 @@ public class MainActivity extends AppCompatActivity {
         getCurrentLocation();
 
         cityName = findViewById(R.id.location);
+        tvUsername = findViewById(R.id.username);
+        //btnLogOut = findViewById(R.id.btn_log_out);
+        /*btnLogOut.setOnClickListener(view -> {
+            mAuth.signOut();
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        }); */
+
         hotEvents = findViewById(R.id.rcv_hot_events);
         hotEventsRecycler();
     }
