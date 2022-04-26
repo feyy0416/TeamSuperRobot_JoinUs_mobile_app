@@ -96,7 +96,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:paddingLeft="40dp"
-        android:text="San Jose, CA"
+        android:text="--, --"
         android:textColor="@color/black"
         android:textSize="25dp"
         android:textStyle="bold"
