@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import edu.neu.madcourse.joinus.EventActivity;
 import edu.neu.madcourse.joinus.MainActivity;
 import edu.neu.madcourse.joinus.MapsActivity;
 import edu.neu.madcourse.joinus.R;
@@ -30,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView signup;
     FirebaseAuth mAuth;
     Button btn_test;
+    Button btn_testEvent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +72,15 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btn_testEvent = findViewById(R.id.btn_testEvent);
+        btn_testEvent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, EventActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 

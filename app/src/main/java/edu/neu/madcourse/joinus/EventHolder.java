@@ -20,6 +20,6 @@ public class EventHolder extends RecyclerView.ViewHolder {
         time = eventView.findViewById(R.id.event_time);
         description = eventView.findViewById(R.id.event_description);
         image = eventView.findViewById(R.id.event_img);
-        distance = eventView.findViewById(R.id.location);
+        distance = eventView.findViewById(R.id.event_location);
     }
 }
