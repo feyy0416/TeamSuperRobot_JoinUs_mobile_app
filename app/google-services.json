@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "698189254779",
-    "project_id": "cs5520final-671c3",
-    "storage_bucket": "cs5520final-671c3.appspot.com"
+    "project_number": "439729125206",
+    "project_id": "gifted-mountain-348422",
+    "storage_bucket": "gifted-mountain-348422.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:698189254779:android:ab43e17c27c7ff01ccd2de",
+        "mobilesdk_app_id": "1:439729125206:android:92608e866dda69b9a588f7",
         "android_client_info": {
           "package_name": "edu.neu.madcourse.joinus"
         }
       },
       "oauth_client": [
         {
-          "client_id": "698189254779-bnklqlagu8m62q4u73qehfvgh46pjtrh.apps.googleusercontent.com",
+          "client_id": "439729125206-dp76g3phvfvtrjbouho7l3trfd6gqn2n.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDaQWs8yoNWRrLFyhqv4nXOkPP0OMlK6uo"
+          "current_key": "AIzaSyCJuFpwmqgbzfDd0lzkW837wR81Tg2k38c"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "698189254779-bnklqlagu8m62q4u73qehfvgh46pjtrh.apps.googleusercontent.com",
+              "client_id": "439729125206-dp76g3phvfvtrjbouho7l3trfd6gqn2n.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -18,6 +18,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import edu.neu.madcourse.joinus.MainActivity;
+import edu.neu.madcourse.joinus.MapsActivity;
 import edu.neu.madcourse.joinus.R;
 import edu.neu.madcourse.joinus.util.Utils;
 
@@ -28,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView forgotPassword;
     TextView signup;
     FirebaseAuth mAuth;
+    Button btn_test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,15 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 signIn();
+            }
+        });
+
+        btn_test = findViewById(R.id.btn_test);
+        btn_test.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, MapsActivity.class);
+                startActivity(intent);
             }
         });
 
