@@ -37,8 +37,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
-import edu.neu.madcourse.joinus.auth.LoginActivity;
-
 public class MainActivity extends AppCompatActivity {
     private TextView tvUsername;
     private TextView cityName;
@@ -60,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
         cityName = findViewById(R.id.location);
         tvUsername = findViewById(R.id.username);
+        tvUsername.setText("");
         //btnLogOut = findViewById(R.id.btn_log_out);
         /*btnLogOut.setOnClickListener(view -> {
             mAuth.signOut();

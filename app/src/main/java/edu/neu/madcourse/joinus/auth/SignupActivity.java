@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import edu.neu.madcourse.joinus.R;
 import edu.neu.madcourse.joinus.util.Utils;
@@ -26,7 +28,8 @@ public class SignupActivity extends AppCompatActivity {
     EditText etPassword;
     EditText etRepeatPassword;
     EditText etUsername;
-    private FirebaseAuth mAuth;
+    FirebaseAuth mAuth;
+    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,9 +97,12 @@ public class SignupActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
+                                databaseReference.child("users").child(email).child("username").setValue(username);
+                                databaseReference.child("users").child(email).child("password").setValue(password);
                                 Toast.makeText(SignupActivity.this, "Signed up Successfully!",
                                         Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+                                //use email as identifier
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 updateUI(user);
 
