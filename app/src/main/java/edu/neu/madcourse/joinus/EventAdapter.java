@@ -7,15 +7,22 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-public class EventAdapter {
+public class EventAdapter extends RecyclerView.Adapter<EventHolder>{
 
     private List<Event> eventList;
     private Context mContext;
+
+    public EventAdapter(List<Event> eventList, Context mContext) {
+        this.eventList = eventList;
+        this.mContext = mContext;
+    }
+
 
     @NonNull
     @Override
@@ -30,9 +37,10 @@ public class EventAdapter {
         Event currentEvent = eventList.get(position);
         SimpleDateFormat sf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
         Date date = new Date(Long.parseLong(Long.toString(currentEvent.getTime())));
-//        holder.time.setText(sf.format(date));
-//        holder.title.setText(currentEvent.getTitle());
-//        holder.category.setText(currentEvent.getCategory());
+        holder.time.setText(sf.format(date));
+        holder.title.setText(currentEvent.getTitle());
+        holder.description.setText(currentEvent.getDescription());
+        holder.distance.setText("1km");
     }
 
     @Override
