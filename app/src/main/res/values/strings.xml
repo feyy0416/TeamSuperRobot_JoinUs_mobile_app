@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">JoinUs</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string-array name="category">
+        <item>Cooking</item>
+        <item>Study</item>
+        <item>Sport</item>
+        <item>Other</item>
+    </string-array>
 </resources>

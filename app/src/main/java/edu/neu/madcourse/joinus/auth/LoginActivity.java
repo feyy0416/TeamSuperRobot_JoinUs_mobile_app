@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import edu.neu.madcourse.joinus.AddEventActivity;
 import edu.neu.madcourse.joinus.EventActivity;
 import edu.neu.madcourse.joinus.MainActivity;
 import edu.neu.madcourse.joinus.MapsActivity;
@@ -77,6 +78,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, EventActivity.class);
+                startActivity(intent);
+            }
+        });
+        Button btn_testAdd = findViewById(R.id.btn_testAddEvent);
+        btn_testAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, AddEventActivity.class);
                 startActivity(intent);
             }
         });
