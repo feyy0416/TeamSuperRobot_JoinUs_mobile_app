@@ -1,6 +1,8 @@
 package edu.neu.madcourse.joinus;
 
 import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
@@ -11,12 +13,19 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.neu.madcourse.joinus.databinding.ActivityMapsBinding;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private ActivityMapsBinding binding;
+    private List<Event> eventList= new ArrayList<>();;
+    private MapsAdapter mapsAdapter;
+    private RecyclerView recyclerView;
+    private RecyclerView.LayoutManager rLayoutManger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +38,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        eventList.add(new Event("a", 0, 0, 0, "a", 1, "This is title a", "XXXXXXXXXXXXXXXXXXXXX",
+                "email"));
+        eventList.add(new Event("b", 0, 0, 0, "a", 2, "This is title b", "XXXXXXXXXX XXXXXX " +
+                "XXXXX", "email2"));
+        updateView();
+    }
+
+    private void updateView() {
+
+        updateRecyclerView(eventList);
+    }
+    private void updateRecyclerView(List<Event> eventList){
+        rLayoutManger = new LinearLayoutManager(this);
+        recyclerView = findViewById(R.id.rcv_map_events);
+        mapsAdapter = new MapsAdapter(this, this.eventList);
+        recyclerView.setAdapter(mapsAdapter);
+        recyclerView.setLayoutManager(rLayoutManger);
     }
 
     /**

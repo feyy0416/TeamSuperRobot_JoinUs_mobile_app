@@ -24,7 +24,7 @@
         android:layout_alignParentBottom="true">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcv_hot_events"
+            android:id="@+id/rcv_map_events"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
@@ -35,17 +35,19 @@
     </HorizontalScrollView>
 
     <EditText
-        android:id="@+id/et_password_input2"
+        android:id="@+id/map_search_box"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
-        android:layout_marginTop="40dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:layout_alignParentStart="true"
         android:ems="10"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:text="1234567891011"
         android:textColor="#787676"
+        android:background="@drawable/et_border"
         tools:ignore="MissingConstraints" />
 </RelativeLayout>
 
