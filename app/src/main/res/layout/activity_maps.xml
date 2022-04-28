@@ -19,7 +19,7 @@
 
     <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:layout_alignParentBottom="true">
 
@@ -43,9 +43,9 @@
         android:paddingRight="20dp"
         android:layout_alignParentStart="true"
         android:ems="10"
-        android:inputType="textPassword"
+        android:hint="Search event"
         android:minHeight="48dp"
-        android:text="1234567891011"
+        android:text=""
         android:textColor="#787676"
         android:background="@drawable/et_border"
         tools:ignore="MissingConstraints" />

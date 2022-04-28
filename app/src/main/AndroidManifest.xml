@@ -34,7 +34,8 @@
 
         <activity
             android:name=".MapsActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"/>
         <activity
             android:name=".auth.SignupActivity"
             android:exported="false"
