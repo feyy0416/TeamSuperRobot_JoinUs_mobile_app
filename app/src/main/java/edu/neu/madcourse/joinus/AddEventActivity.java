@@ -67,7 +67,8 @@ public class AddEventActivity extends AppCompatActivity implements AdapterView.O
                 double latitude = Double.parseDouble(eLatitude.getText().toString());
                 double longitude = Double.parseDouble(eLongitude.getText().toString());
                 if (title == null || time == null || description == null || email == null
-                || "".equals(title) || "".equals(time) || "".equals(description) || "".equals(email)){
+                || "".equals(title) || "".equals(time) || "".equals(description) || "".equals(email)
+                || "".equals(eLatitude.getText().toString()) || "".equals(eLongitude.getText().toString())){
                     Toast.makeText(getApplicationContext(), "Please fill out all the fields", Toast.LENGTH_SHORT).show();
                 } else {
                     postEvent(title, description, time, email, latitude, longitude);

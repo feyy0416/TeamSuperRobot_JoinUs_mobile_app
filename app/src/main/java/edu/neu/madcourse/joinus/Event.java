@@ -3,8 +3,8 @@ package edu.neu.madcourse.joinus;
 public class Event {
 
     private String eventId;
-    private long latitude;
-    private long longitude;
+    private double latitude;
+    private double longitude;
     private String time;
     private String announcer;
     private int imageId;
@@ -13,7 +13,7 @@ public class Event {
     private String description;
     private String email;
 
-    public Event(String eventId, long latitude, long longitude, String time, String announcer, int imageId, String category, String title, String description, String email){
+    public Event(String eventId, double latitude, double longitude, String time, String announcer, int imageId, String category, String title, String description, String email){
         this.eventId = eventId;
         this.latitude = latitude;
         this.longitude = longitude;
@@ -27,10 +27,10 @@ public class Event {
     public String getEventId() {
         return eventId;
     }
-    public long getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
-    public long getLongitude() { return longitude; }
+    public double getLongitude() { return longitude; }
     public String getTime() {
         return time;
     }
