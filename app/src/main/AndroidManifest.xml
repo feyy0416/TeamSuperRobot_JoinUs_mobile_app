@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JoinUs">
         <activity
+            android:name=".MyLocationDemoActivity"
+            android:exported="false" />
+        <activity
             android:name=".AddEventActivity"
             android:exported="false" />
         <!--
@@ -35,11 +38,11 @@
         <activity
             android:name=".MapsActivity"
             android:exported="false"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"/>
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity
             android:name=".auth.SignupActivity"
             android:exported="false"
-            android:label="Sign up"/>
+            android:label="Sign up" />
         <activity
             android:name=".MainActivity"
             android:exported="false" />

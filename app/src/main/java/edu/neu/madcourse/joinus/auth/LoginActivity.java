@@ -21,6 +21,7 @@ import edu.neu.madcourse.joinus.AddEventActivity;
 import edu.neu.madcourse.joinus.EventActivity;
 import edu.neu.madcourse.joinus.MainActivity;
 import edu.neu.madcourse.joinus.MapsActivity;
+import edu.neu.madcourse.joinus.MyLocationDemoActivity;
 import edu.neu.madcourse.joinus.R;
 import edu.neu.madcourse.joinus.util.Utils;
 
@@ -33,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     Button btn_test;
     Button btn_testEvent;
+    Button btn_test_loc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +88,15 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, AddEventActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btn_test_loc = findViewById(R.id.btn_test_loc);
+        btn_test_loc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, MyLocationDemoActivity.class);
                 startActivity(intent);
             }
         });
