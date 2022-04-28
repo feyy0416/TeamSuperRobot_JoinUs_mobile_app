@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.EditText;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -26,6 +27,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private MapsAdapter mapsAdapter;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager rLayoutManger;
+    private EditText editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        editText = findViewById(R.id.map_search_box);
+
         eventList.add(new Event("a", 0, 0, "2/2/2022", "a", 1,"a", "This is title a", "XXXXXXXXXXXXXXXXXXXXX", "email"));
         eventList.add(new Event("b", 0, 0, "3/3/2022", "a", 1,"a", "This is title b", "XXXXXXXXXX XXXXXX XXXXX", "email2"));
         updateView();
@@ -49,7 +53,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         updateRecyclerView(eventList);
     }
     private void updateRecyclerView(List<Event> eventList){
-        rLayoutManger = new LinearLayoutManager(this);
+        rLayoutManger = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView = findViewById(R.id.rcv_map_events);
         mapsAdapter = new MapsAdapter(this, this.eventList);
         recyclerView.setAdapter(mapsAdapter);
