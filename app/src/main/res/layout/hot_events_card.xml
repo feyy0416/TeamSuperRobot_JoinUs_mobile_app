@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="160dp"
-    android:layout_height="300dp"
+    android:layout_height="265dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="2dp"
     app:cardElevation="8dp"
@@ -23,12 +23,16 @@
             android:id="@+id/hot_event_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hot Event 1"/>
+            android:layout_marginTop="5dp"
+            android:text="Hot Event 1"
+            android:textStyle="bold"/>
+
         <TextView
             android:id="@+id/hot_event_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="hiking with Mellisa at national forest coffee with friends around the Bay Area"/>
+            android:layout_marginTop="5dp"
+            android:text="hiking with Mellisa at national forest coffee with friends around the Bay Area" />
     </LinearLayout>
 
 

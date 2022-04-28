@@ -25,8 +25,10 @@ public class EventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_list);
         eventList = new ArrayList<>();
-        eventList.add(new Event("a", 0, 0, 0, "a", "a", "a", "This is title a", "XXXXXXXXXXXXXXXXXXXXX"));
-        eventList.add(new Event("b", 0, 0, 0, "a", "a", "a", "This is title b", "XXXXXXXXXX XXXXXX XXXXX"));
+        eventList.add(new Event("a", 0, 0, 0, "a", 1, "a", "This is title a",
+                "XXXXXXXXXXXXXXXXXXXXX"));
+        eventList.add(new Event("b", 0, 0, 0, "a", 1, "a", "This is title b", "XXXXXXXXXX XXXXXX " +
+                "XXXXX"));
         createRecyclerView();
     }
 

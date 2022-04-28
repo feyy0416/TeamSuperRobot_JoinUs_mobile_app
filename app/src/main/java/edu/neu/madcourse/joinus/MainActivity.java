@@ -34,6 +34,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -66,7 +67,23 @@ public class MainActivity extends AppCompatActivity {
         }); */
 
         hotEvents = findViewById(R.id.rcv_hot_events);
-        hotEventsRecycler();
+        hotEvents.setHasFixedSize(true);
+        hotEvents.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,
+                false));
+
+        ArrayList<Event> hotEventsList = new ArrayList<>();
+
+        hotEventsList.add(new Event("a", 0, 0, 0, "a", R.drawable.app_logo_round, "a", "This is title a",
+                "XXXXXXXXXXXXXXXXXXXXX"));
+        hotEventsList.add(new Event("b", 0, 0, 0, "a", R.drawable.app_logo_round, "b", "This is " +
+                "title b",
+                "XXXXXXXXXXXXXXXXXXXXX"));
+        hotEventsList.add(new Event("c", 0, 0, 0, "a", R.drawable.app_logo_round, "c", "This is " +
+                "title c",
+                "XXXXXXXXXXXXXXXXXXXXX"));
+
+        HotEventsAdapter  hotEventsAdapter = new HotEventsAdapter(hotEventsList);
+        hotEvents.setAdapter(hotEventsAdapter);
     }
 
     private void getCurrentLocation() {
@@ -170,11 +187,5 @@ public class MainActivity extends AppCompatActivity {
                 getCurrentLocation();
             }
         }
-    }
-
-    private void hotEventsRecycler() {
-        hotEvents.setHasFixedSize(true);
-        hotEvents.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,
-                false));
     }
 }

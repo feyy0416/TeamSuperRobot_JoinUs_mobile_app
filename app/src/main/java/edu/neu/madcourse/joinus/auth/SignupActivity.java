@@ -97,8 +97,10 @@ public class SignupActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                databaseReference.child("users").child(email).child("username").setValue(username);
-                                databaseReference.child("users").child(email).child("password").setValue(password);
+                                //databaseReference.child("users").child(email).child("username")
+                                // .setValue(username);
+                                //databaseReference.child("users").child(email).child("password")
+                                // .setValue(password);
                                 Toast.makeText(SignupActivity.this, "Signed up Successfully!",
                                         Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(SignupActivity.this, LoginActivity.class));
