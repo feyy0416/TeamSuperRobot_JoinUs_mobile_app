@@ -27,7 +27,7 @@ public class HotEventsAdapter extends RecyclerView.Adapter<HotEventsAdapter.HotE
 
     @Override
     public void onBindViewHolder(@NonNull HotEventsHolder holder, int position) {
-        holder.hotEventImage.setImageResource(R.drawable.icon);
+        holder.hotEventImage.setImageResource(evenList.get(position).getImageId());
         holder.hotEventTitle.setText(evenList.get(position).getTitle());
         holder.hotEventDescription.setText(evenList.get(position).getDescription());
     }

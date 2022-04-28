@@ -119,9 +119,10 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_hot_events"
-            android:layout_width="220dp"
+            android:layout_width="match_parent"
             android:layout_height="224dp"
             android:layout_marginStart="40dp"
+            android:layout_marginEnd="40dp"
             android:layout_marginTop="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
