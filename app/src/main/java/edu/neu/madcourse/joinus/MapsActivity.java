@@ -39,10 +39,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        eventList.add(new Event("a", 0, 0, 0, "a", 1, "This is title a", "XXXXXXXXXXXXXXXXXXXXX",
-                "email"));
-        eventList.add(new Event("b", 0, 0, 0, "a", 2, "This is title b", "XXXXXXXXXX XXXXXX " +
-                "XXXXX", "email2"));
+        eventList.add(new Event("a", 0, 0, "2/2/2022", "a", 1,"a", "This is title a", "XXXXXXXXXXXXXXXXXXXXX", "email"));
+        eventList.add(new Event("b", 0, 0, "3/3/2022", "a", 1,"a", "This is title b", "XXXXXXXXXX XXXXXX XXXXX", "email2"));
         updateView();
     }
 
