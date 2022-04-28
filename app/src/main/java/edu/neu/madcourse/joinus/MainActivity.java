@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         hotEvents.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,
                 false));
 
-        ArrayList<Event> hotEventsList = new ArrayList<>();
+        List<Event> hotEventsList = new ArrayList<>();
 
         hotEventsList.add(new Event("a", 0, 0, "0", "a", R.drawable.app_logo_round, "a", "This is title a",
                 "XXXXXXXXXXXXXXXXXXXXX", "email"));

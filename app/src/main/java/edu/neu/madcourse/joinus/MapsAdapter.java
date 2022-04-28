@@ -13,10 +13,8 @@ import java.util.Date;
 import java.util.List;
 
 public class MapsAdapter extends RecyclerView.Adapter<MapsHolder>{
-    private Context mContext;
     private List<Event> list;
-    public MapsAdapter(Context mContext, List<Event> eventList){
-        this.mContext = mContext;
+    public MapsAdapter(List<Event> eventList){
         this.list = eventList;
     }
     @NonNull
@@ -28,7 +26,6 @@ public class MapsAdapter extends RecyclerView.Adapter<MapsHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull MapsHolder holder, int position) {
-        mContext = mContext.getApplicationContext();
         Event currentEvent = list.get(position);
         holder.title.setText(currentEvent.getTitle());
         holder.description.setText(currentEvent.getDescription());

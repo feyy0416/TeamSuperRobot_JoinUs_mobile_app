@@ -9,12 +9,12 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class HotEventsAdapter extends RecyclerView.Adapter<HotEventsAdapter.HotEventsHolder> {
-    private final ArrayList<Event> evenList;
+    private List<Event> evenList;
 
-    public HotEventsAdapter(ArrayList<Event> evenList) {
+    public HotEventsAdapter(List<Event> evenList) {
         this.evenList = evenList;
     }
 
@@ -27,21 +27,21 @@ public class HotEventsAdapter extends RecyclerView.Adapter<HotEventsAdapter.HotE
 
     @Override
     public void onBindViewHolder(@NonNull HotEventsHolder holder, int position) {
-        holder.hotEventImage.setImageResource(evenList.get(position).getImageId());
+        holder.hotEventImage.setImageResource(R.drawable.icon);
         holder.hotEventTitle.setText(evenList.get(position).getTitle());
         holder.hotEventDescription.setText(evenList.get(position).getDescription());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return evenList.size();
     }
 
     public class HotEventsHolder extends RecyclerView.ViewHolder{
 
-        private ImageView hotEventImage;
-        private TextView hotEventTitle;
-        private TextView hotEventDescription;
+        public ImageView hotEventImage;
+        public TextView hotEventTitle;
+        public TextView hotEventDescription;
 
         public HotEventsHolder(@NonNull View itemView) {
             super(itemView);
