@@ -37,7 +37,8 @@
             android:exported="false" />
         <activity
             android:name=".auth.SignupActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Sign up"/>
         <activity
             android:name=".MainActivity"
             android:exported="false" />
