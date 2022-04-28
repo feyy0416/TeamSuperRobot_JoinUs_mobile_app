@@ -36,9 +36,9 @@ public class EventAdapter extends RecyclerView.Adapter<EventHolder>{
     public void onBindViewHolder(@NonNull EventHolder holder, int position) {
         mContext = mContext.getApplicationContext();
         Event currentEvent = eventList.get(position);
-        SimpleDateFormat sf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
-        Date date = new Date(Long.parseLong(Long.toString(currentEvent.getTime())));
-        holder.time.setText(sf.format(date));
+//        SimpleDateFormat sf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
+//        Date date = new Date(Long.parseLong(Long.toString(currentEvent.getTime())));
+        holder.time.setText(currentEvent.getTime());
         holder.title.setText(currentEvent.getTitle());
         holder.description.setText(currentEvent.getDescription());
         holder.distance.setText("1km");

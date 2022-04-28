@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView cityName;
     private RecyclerView hotEvents;
     private LocationRequest locationRequest;
+    private double latitude;
+    private double longitude;
     //private Button btnLogOut;
     FirebaseAuth mAuth;
 
@@ -73,14 +75,14 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<Event> hotEventsList = new ArrayList<>();
 
-        hotEventsList.add(new Event("a", 0, 0, 0, "a", R.drawable.app_logo_round, "a", "This is title a",
-                "XXXXXXXXXXXXXXXXXXXXX"));
-        hotEventsList.add(new Event("b", 0, 0, 0, "a", R.drawable.app_logo_round, "b", "This is " +
+        hotEventsList.add(new Event("a", 0, 0, "0", "a", R.drawable.app_logo_round, "a", "This is title a",
+                "XXXXXXXXXXXXXXXXXXXXX", "email"));
+        hotEventsList.add(new Event("b", 0, 0, "0", "a", R.drawable.app_logo_round, "b", "This is " +
                 "title b",
-                "XXXXXXXXXXXXXXXXXXXXX"));
-        hotEventsList.add(new Event("c", 0, 0, 0, "a", R.drawable.app_logo_round, "c", "This is " +
+                "XXXXXXXXXXXXXXXXXXXXX", "email"));
+        hotEventsList.add(new Event("c", 0, 0, "0", "a", R.drawable.app_logo_round, "c", "This is " +
                 "title c",
-                "XXXXXXXXXXXXXXXXXXXXX"));
+                "XXXXXXXXXXXXXXXXXXXXX", "email"));
 
         HotEventsAdapter  hotEventsAdapter = new HotEventsAdapter(hotEventsList);
         hotEvents.setAdapter(hotEventsAdapter);
@@ -101,8 +103,8 @@ public class MainActivity extends AppCompatActivity {
                             int position = locationResult.getLocations().size() - 1;
                             Geocoder geocoder = new Geocoder(getApplicationContext(),
                                     Locale.getDefault());
-                            double latitude = locationResult.getLocations().get(position).getLatitude();
-                            double longitude = locationResult.getLocations().get(position).getLongitude();
+                            latitude = locationResult.getLocations().get(position).getLatitude();
+                            longitude = locationResult.getLocations().get(position).getLongitude();
                             List<Address> addresses = null;
                             try {
                                 addresses = geocoder.getFromLocation(latitude,
@@ -188,4 +190,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    public double getLatitude(){ return latitude;}
+    public double getLongitude(){ return longitude;}
 }
