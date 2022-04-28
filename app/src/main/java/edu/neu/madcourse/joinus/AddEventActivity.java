@@ -31,7 +31,7 @@ public class AddEventActivity extends AppCompatActivity implements AdapterView.O
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String choice = adapterView.getItemAtPosition(i).toString();
         category = choice;
-        Toast.makeText(getApplicationContext(), choice + " picked successfully", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), choice + " picked successfully", Toast.LENGTH_SHORT).show();
     }
 
     @Override

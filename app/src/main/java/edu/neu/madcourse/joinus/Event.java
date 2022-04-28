@@ -7,19 +7,17 @@ public class Event {
     private long longitude;
     private long time;
     private String announcer;
-    private int imageId;
     private String category;
     private String title;
     private String description;
     private String email;
 
-    public Event(String eventId, long latitude, long longitude, long time, String announcer, int imageId, String category, String title, String description, String email){
+    public Event(String eventId, long latitude, long longitude, long time, String announcer, String category, String title, String description, String email){
         this.eventId = eventId;
         this.latitude = latitude;
         this.longitude = longitude;
         this.time = time;
         this.announcer = announcer;
-        this.imageId = imageId;
         this.category = category;
         this.title = title;
         this.description = description;
@@ -36,9 +34,6 @@ public class Event {
     }
     public String getAnnouncer() {
         return announcer;
-    }
-    public int getImageId() {
-        return imageId;
     }
     public String getCategory() {
         return category;
