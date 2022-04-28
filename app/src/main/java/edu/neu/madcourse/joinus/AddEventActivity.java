@@ -3,6 +3,7 @@ package edu.neu.madcourse.joinus;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Message;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -16,12 +17,14 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.UUID;
+
 public class AddEventActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private Spinner spinner;
     private String category;
     private DatabaseReference mDatabase;
-    private static final String TABLE_NAME = "Messages";
+    private static final String TABLE_NAME = "Events";
 
     private EditText eTitle;
     private EditText eTime;
@@ -63,9 +66,25 @@ public class AddEventActivity extends AppCompatActivity implements AdapterView.O
                 String email = eEmail.getText().toString();
                 double latitude = Double.parseDouble(eLatitude.getText().toString());
                 double longitude = Double.parseDouble(eLongitude.getText().toString());
-                postEvent(title, description, time, email, latitude, longitude);
+                if (title == null || time == null || description == null || email == null
+                || "".equals(title) || "".equals(time) || "".equals(description) || "".equals(email)){
+                    Toast.makeText(getApplicationContext(), "Please fill out all the fields", Toast.LENGTH_SHORT).show();
+                } else {
+                    postEvent(title, description, time, email, latitude, longitude);
+                    Toast.makeText(getApplicationContext(), "Post successfully", Toast.LENGTH_SHORT).show();
+                    refresh();
+                }
             }
         });
+    }
+
+    private void refresh() {
+        eTitle.setText("");
+        eTime.setText("");
+        eDescription.setText("");
+        eEmail.setText("");
+        eLatitude.setText("");
+        eLongitude.setText("");
     }
 
     @Override
@@ -81,6 +100,22 @@ public class AddEventActivity extends AppCompatActivity implements AdapterView.O
     }
 
     private void postEvent(String title, String description, String time, String email, double latitude, double longitude){
+        int imageId = 0;
+        if ("Cooking".equals(category)){
+            imageId = 1;
+        }
+        if ("Study".equals(category)){
+            imageId = 2;
+        }
+        if ("Sport".equals(category)){
+            imageId = 3;
+        }
+        if ("Other".equals(category)){
+            imageId = 4;
+        }
+        String eventId = UUID.randomUUID().toString();
+        Event event = new Event(eventId, latitude, longitude, time, "tester", imageId, category, title, description, email);
+        mDatabase.child(TABLE_NAME).child(eventId).setValue(event);
 
     }
 }
