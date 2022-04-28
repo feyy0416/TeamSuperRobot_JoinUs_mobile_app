@@ -16,7 +16,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import edu.neu.madcourse.joinus.R;
@@ -29,7 +28,7 @@ public class SignupActivity extends AppCompatActivity {
     EditText etRepeatPassword;
     EditText etUsername;
     FirebaseAuth mAuth;
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+    FirebaseDatabase mDatabase;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
