@@ -16,14 +16,18 @@ import com.squareup.picasso.Picasso;
 
 public class DetailsActivity extends AppCompatActivity {
 
-    ImageView rImage;
+    ImageView img0;
+    ImageView img1;
+    ImageView img2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        rImage = findViewById(R.id.details_img0);
+        img0 = findViewById(R.id.details_img0);
+        img1 = findViewById(R.id.details_img1);
+        img2 = findViewById(R.id.details_img2);
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -35,8 +39,8 @@ public class DetailsActivity extends AppCompatActivity {
                 if (snapshot.hasChildren()){
                     for (DataSnapshot item: snapshot.getChildren()){
                         String url = item.getValue(String.class);
-                        Picasso.get().load(url).into(rImage);
-                        break;
+                        Picasso.get().load(url).into(img0);
+
                     }
 
                 }
