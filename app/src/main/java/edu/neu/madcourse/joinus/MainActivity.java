@@ -14,6 +14,7 @@ import android.os.Looper;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,6 +32,12 @@ import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -44,6 +51,10 @@ public class MainActivity extends AppCompatActivity {
     private LocationRequest locationRequest;
     private double latitude;
     private double longitude;
+    private DatabaseReference reference;
+    private FirebaseUser user;
+    private String userID;
+    private String loginUsername = "";
     //private Button btnLogOut;
     FirebaseAuth mAuth;
 
@@ -56,11 +67,33 @@ public class MainActivity extends AppCompatActivity {
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         locationRequest.setInterval(5000);
         locationRequest.setFastestInterval(2000);
+
+        //display current location
+        cityName = findViewById(R.id.location);
         getCurrentLocation();
 
-        cityName = findViewById(R.id.location);
+        //display username
         tvUsername = findViewById(R.id.username);
-        tvUsername.setText("");
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        userID = user.getUid();
+        reference = FirebaseDatabase.getInstance().getReference();
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                loginUsername =
+                        snapshot.child("users").child(userID).child("username").getValue(String.class);
+                tvUsername.setText("Hi, " + loginUsername + "!");
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(MainActivity.this, "Something wrong happened!", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        //loginUsername = getIntent().getStringExtra("username");
+
         //btnLogOut = findViewById(R.id.btn_log_out);
         /*btnLogOut.setOnClickListener(view -> {
             mAuth.signOut();

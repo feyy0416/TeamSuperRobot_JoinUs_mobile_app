@@ -41,6 +41,7 @@ public class SignupActivity extends AppCompatActivity {
         etPassword = findViewById(R.id.et_password_input1);
         etRepeatPassword = findViewById(R.id.et_password_input2);
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance();
 
         Utils.setInputReset(etUsername);
         Utils.setInputReset(etEmail);
@@ -100,12 +101,14 @@ public class SignupActivity extends AppCompatActivity {
                                 // .setValue(username);
                                 //databaseReference.child("users").child(email).child("password")
                                 // .setValue(password);
+                                User user = new User(username, email, password);
+                                mDatabase.getReference("users").child(mAuth.getCurrentUser().getUid()).setValue(user);
                                 Toast.makeText(SignupActivity.this, "Signed up Successfully!",
                                         Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(SignupActivity.this, LoginActivity.class));
                                 //use email as identifier
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                updateUI(user);
+                                FirebaseUser currentUser = mAuth.getCurrentUser();
+                                updateUI(currentUser);
 
                             } else {
                                 Toast.makeText(SignupActivity.this,
