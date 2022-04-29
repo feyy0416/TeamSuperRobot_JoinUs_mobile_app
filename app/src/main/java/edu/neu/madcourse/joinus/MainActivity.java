@@ -48,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvUsername;
     private TextView cityName;
     private RecyclerView hotEvents;
+    private RecyclerView sports;
+    private RecyclerView study;
+    private RecyclerView cooking;
+    private RecyclerView others;
+
     private LocationRequest locationRequest;
     private double latitude;
     private double longitude;
@@ -56,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
     private String userID;
     private String loginUsername = "";
     //private Button btnLogOut;
-    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,8 +96,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //loginUsername = getIntent().getStringExtra("username");
-
         //btnLogOut = findViewById(R.id.btn_log_out);
         /*btnLogOut.setOnClickListener(view -> {
             mAuth.signOut();
@@ -118,6 +120,82 @@ public class MainActivity extends AppCompatActivity {
 
         HotEventsAdapter  hotEventsAdapter = new HotEventsAdapter(hotEventsList);
         hotEvents.setAdapter(hotEventsAdapter);
+
+        sports = findViewById(R.id.rcv_sports);
+        sports.setHasFixedSize(true);
+        sports.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,
+                false));
+
+        List<Event> sportsList = new ArrayList<>();
+
+        sportsList.add(new Event("a", 0, 0, "0", "a", R.drawable.app_logo_round, "a", "This is title a",
+                "XXXXXXXXXXXXXXXXXXXXX", "email"));
+        sportsList.add(new Event("b", 0, 0, "0", "a", R.drawable.app_logo_round, "b", "This is " +
+                "title b",
+                "XXXXXXXXXXXXXXXXXXXXX", "email"));
+        sportsList.add(new Event("c", 0, 0, "0", "a", R.drawable.app_logo_round, "c", "This is " +
+                "title c",
+                "XXXXXXXXXXXXXXXXXXXXX", "email"));
+
+        HotEventsAdapter  sportsAdapter = new HotEventsAdapter(sportsList);
+        sports.setAdapter(sportsAdapter);
+
+        study = findViewById(R.id.rcv_study);
+        study.setHasFixedSize(true);
+        study.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,
+                false));
+
+        List<Event> studyList = new ArrayList<>();
+
+        studyList.add(new Event("a", 0, 0, "0", "a", R.drawable.app_logo_round, "a", "This is title a",
+                "XXXXXXXXXXXXXXXXXXXXX", "email"));
+        studyList.add(new Event("b", 0, 0, "0", "a", R.drawable.app_logo_round, "b", "This is " +
+                "title b",
+                "XXXXXXXXXXXXXXXXXXXXX", "email"));
+        studyList.add(new Event("c", 0, 0, "0", "a", R.drawable.app_logo_round, "c", "This is " +
+                "title c",
+                "XXXXXXXXXXXXXXXXXXXXX", "email"));
+
+        HotEventsAdapter  studyAdapter = new HotEventsAdapter(studyList);
+        study.setAdapter(sportsAdapter);
+
+        cooking = findViewById(R.id.rcv_cooking);
+        cooking.setHasFixedSize(true);
+        cooking.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,
+                false));
+
+        List<Event> cookingList = new ArrayList<>();
+
+        cookingList.add(new Event("a", 0, 0, "0", "a", R.drawable.app_logo_round, "a", "This is title a",
+                "XXXXXXXXXXXXXXXXXXXXX", "email"));
+        cookingList.add(new Event("b", 0, 0, "0", "a", R.drawable.app_logo_round, "b", "This is " +
+                "title b",
+                "XXXXXXXXXXXXXXXXXXXXX", "email"));
+        cookingList.add(new Event("c", 0, 0, "0", "a", R.drawable.app_logo_round, "c", "This is " +
+                "title c",
+                "XXXXXXXXXXXXXXXXXXXXX", "email"));
+
+        HotEventsAdapter  cookingAdapter = new HotEventsAdapter(studyList);
+        cooking.setAdapter(cookingAdapter);
+
+        others = findViewById(R.id.rcv_others);
+        others.setHasFixedSize(true);
+        others.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,
+                false));
+
+        List<Event> othersList = new ArrayList<>();
+
+        othersList.add(new Event("a", 0, 0, "0", "a", R.drawable.app_logo_round, "a", "This is title a",
+                "XXXXXXXXXXXXXXXXXXXXX", "email"));
+        othersList.add(new Event("b", 0, 0, "0", "a", R.drawable.app_logo_round, "b", "This is " +
+                "title b",
+                "XXXXXXXXXXXXXXXXXXXXX", "email"));
+        othersList.add(new Event("c", 0, 0, "0", "a", R.drawable.app_logo_round, "c", "This is " +
+                "title c",
+                "XXXXXXXXXXXXXXXXXXXXX", "email"));
+
+        HotEventsAdapter  othersAdapter = new HotEventsAdapter(studyList);
+        others.setAdapter(othersAdapter);
     }
 
     private void getCurrentLocation() {

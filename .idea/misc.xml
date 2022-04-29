@@ -4,10 +4,6 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/JoinUs/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/tongz/StudioProjects/TeamSuperRobot_JoinUs_mobile_app/app/src/main/res/layout/activity_login.xml" value="0.5451282051282051" />
-        <entry key="..\:/Users/tongz/StudioProjects/TeamSuperRobot_JoinUs_mobile_app/app/src/main/res/layout/activity_maps.xml" value="0.46770833333333334" />
-        <entry key="..\:/Users/tongz/StudioProjects/TeamSuperRobot_JoinUs_mobile_app/app/src/main/res/layout/map_events_card.xml" value="0.46770833333333334" />
-        <entry key="..\:/Users/tongz/StudioProjects/TeamSuperRobot_JoinUs_mobile_app/app/src/main/res/layout/my_location_demo.xml" value="0.46770833333333334" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.145" />
         <entry key="app/src/main/res/drawable/circle.xml" value="0.1735" />
         <entry key="app/src/main/res/drawable/et_border.xml" value="0.1" />
@@ -18,10 +14,11 @@
         <entry key="app/src/main/res/layout/activity_event_card.xml" value="0.31875" />
         <entry key="app/src/main/res/layout/activity_event_list.xml" value="0.13576494427558258" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.3032596532849298" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.20689655172413793" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.2869308471679688" />
         <entry key="app/src/main/res/layout/activity_signup.xml" value="0.2837609750253183" />
         <entry key="app/src/main/res/layout/hot_events_card.xml" value="0.26953481038411453" />
         <entry key="app/src/main/res/layout/map_events_card.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layout/my_location_demo.xml" value="0.1" />
         <entry key="app/src/main/res/layout/search_background.xml" value="0.22056159420289856" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/app_logo.xml" value="0.1265" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/app_logo_round.xml" value="0.1265" />
