@@ -1,6 +1,9 @@
 package edu.neu.madcourse.joinus;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,10 +30,17 @@ public class MapsAdapter extends RecyclerView.Adapter<MapsHolder>{
     @Override
     public void onBindViewHolder(@NonNull MapsHolder holder, int position) {
         Event currentEvent = list.get(position);
+
         holder.title.setText(currentEvent.getTitle());
         holder.description.setText(currentEvent.getDescription());
         holder.distance.setText("2.5 miles");
         holder.image.setImageResource(R.drawable.icon);
+        holder.map_event_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
+
     }
 
     @Override
