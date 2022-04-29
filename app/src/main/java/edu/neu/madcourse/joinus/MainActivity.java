@@ -65,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
     //private Button btnLogOut;
     private BottomNavigationView bottomNavigationView;
 
+    private Intent tempIntent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -221,7 +223,12 @@ public class MainActivity extends AppCompatActivity {
 
                         return true;
                     case R.id.menu_search:
-                        startActivity(new Intent(getApplicationContext(), EventListActivity.class));
+                        //pass value to add event activity
+                        tempIntent  = new Intent(getBaseContext(), EventActivity.class);
+                        tempIntent.putExtra("lati", latitude);
+                        tempIntent.putExtra("long", longitude);
+//                            startActivity(intent);
+                        startActivity(tempIntent);
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.menu_chat:
@@ -252,11 +259,6 @@ public class MainActivity extends AppCompatActivity {
                             latitude = locationResult.getLocations().get(position).getLatitude();
                             longitude = locationResult.getLocations().get(position).getLongitude();
 
-                            //pass value to add event activity
-                            Intent intent = new Intent(getBaseContext(), EventActivity.class);
-                            intent.putExtra("lati", latitude);
-                            intent.putExtra("long", longitude);
-//                            startActivity(intent);
 
                             List<Address> addresses = null;
                             try {
