@@ -15,6 +15,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import edu.neu.madcourse.joinus.auth.LoginActivity;
+
 public class MapsAdapter extends RecyclerView.Adapter<MapsHolder>{
     private List<Event> list;
     public MapsAdapter(List<Event> eventList){
@@ -38,6 +40,11 @@ public class MapsAdapter extends RecyclerView.Adapter<MapsHolder>{
         holder.map_event_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                Context context = holder.map_event_card.getContext();
+                Intent intent = new Intent(context, DetailsActivity.class);
+                context.startActivity(intent);
+
             }
         });
 

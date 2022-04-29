@@ -20,7 +20,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import edu.neu.madcourse.joinus.AddEventActivity;
 import edu.neu.madcourse.joinus.DetailsActivity;
 import edu.neu.madcourse.joinus.EventActivity;
-import edu.neu.madcourse.joinus.FooterNavActivity;
 import edu.neu.madcourse.joinus.MainActivity;
 import edu.neu.madcourse.joinus.MapsActivity;
 import edu.neu.madcourse.joinus.R;
@@ -35,9 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     Button btn_test;
     Button btn_testEvent;
-    Button btn_test_loc;
     Button btn_test_detail;
-    Button btn_test_footbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,14 +102,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        btn_test_footbar = findViewById(R.id.btn_test_footbar);
-        btn_test_footbar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, FooterNavActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     private void signIn() {
