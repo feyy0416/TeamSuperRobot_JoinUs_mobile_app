@@ -10,9 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -22,6 +24,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,6 +42,8 @@ public class MapsActivity extends AppCompatActivity
     private MapsAdapter mapsAdapter;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager rLayoutManger;
+    BottomNavigationView bottomNavigationView;
+
 
     /**
      * Request code for location permission request.
@@ -72,11 +77,34 @@ public class MapsActivity extends AppCompatActivity
                 "3/3/2022", "a", 1,"a", "This is title b",
                 "XXXXXXXXXX" +
                 " XXXXXX XXXXX", "email2"));
+
+
+        bottomNavigationView = findViewById(R.id.bottom_nav);
         updateView();
+
     }
 
     private void updateView() {
         updateRecyclerView(eventList);
+        bottomNavigationView.setSelectedItemId(R.id.menu_chat);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.menu_home:
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.menu_search:
+                        startActivity(new Intent(getApplicationContext(), EventListActivity.class));
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.menu_chat:
+                        return true;
+                }
+                return false;
+            }
+        });
     }
     private void updateRecyclerView(List<Event> eventList){
         rLayoutManger = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -145,6 +173,12 @@ public class MapsActivity extends AppCompatActivity
             permissionDenied = true;
             // [END_EXCLUDE]
         }
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        updateView();
     }
 
     @Override
