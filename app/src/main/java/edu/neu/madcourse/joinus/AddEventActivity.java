@@ -2,8 +2,10 @@ package edu.neu.madcourse.joinus;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.os.Bundle;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
@@ -14,10 +16,22 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
+
+import edu.neu.madcourse.joinus.auth.User;
 
 public class AddEventActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -32,6 +46,8 @@ public class AddEventActivity extends AppCompatActivity implements AdapterView.O
     private EditText eEmail;
     private EditText eLatitude;
     private EditText eLongitude;
+
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,17 +78,25 @@ public class AddEventActivity extends AppCompatActivity implements AdapterView.O
             public void onClick(View view) {
                 String title = eTitle.getText().toString();
                 String time = eTime.getText().toString();
-                String description = eDescription.getText().toString();
-                String email = eEmail.getText().toString();
-                double latitude = Double.parseDouble(eLatitude.getText().toString());
-                double longitude = Double.parseDouble(eLongitude.getText().toString());
-                if (title == null || time == null || description == null || email == null
-                || "".equals(title) || "".equals(time) || "".equals(description) || "".equals(email)
-                || "".equals(eLatitude.getText().toString()) || "".equals(eLongitude.getText().toString())){
-                    Toast.makeText(getApplicationContext(), "Please fill out all the fields", Toast.LENGTH_SHORT).show();
-                } else {
-                    postEvent(title, description, time, email, latitude, longitude);
-                    Toast.makeText(getApplicationContext(), "Post successfully", Toast.LENGTH_SHORT).show();
+                DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                formatter.setLenient(false);
+                try {
+                    Date date= formatter.parse(time);
+                    String description = eDescription.getText().toString();
+                    String email = eEmail.getText().toString();
+                    double latitude = Double.parseDouble(eLatitude.getText().toString());
+                    double longitude = Double.parseDouble(eLongitude.getText().toString());
+                    if (title == null || time == null || description == null || email == null
+                            || "".equals(title) || "".equals(time) || "".equals(description) || "".equals(email)
+                            || "".equals(eLatitude.getText().toString()) || "".equals(eLongitude.getText().toString())){
+                        Toast.makeText(getApplicationContext(), "Please fill out all the fields", Toast.LENGTH_SHORT).show();
+                    } else {
+                        postEvent(title, description, time, email, latitude, longitude);
+                        Toast.makeText(getApplicationContext(), "Post successfully", Toast.LENGTH_SHORT).show();
+                        refresh();
+                    }
+                } catch (ParseException e) {
+                    Toast.makeText(getApplicationContext(), "Time format is invalid", Toast.LENGTH_SHORT).show();
                     refresh();
                 }
             }
@@ -115,7 +139,32 @@ public class AddEventActivity extends AppCompatActivity implements AdapterView.O
             imageId = 4;
         }
         String eventId = UUID.randomUUID().toString();
-        Event event = new Event(eventId, latitude, longitude, time, "tester", imageId, category, title, description, email);
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//        String userId = "5eDjtAGoVGVhLR5eVe0W7ijgKdU2";
+        Log.d("1111111111111111111",userId);
+        mDatabase.child("users").addValueEventListener(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        if (snapshot.hasChildren()) {
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                User user = dataSnapshot.getValue(User.class);
+                                if (userId.equals(user.getUid())){
+                                    username = user.getUsername();
+                                    Log.d("1111111111111111111",username);
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+
+
+        //TODO: get user name
+        Event event = new Event(eventId, latitude, longitude, time, username, imageId, category, title, description, email);
         mDatabase.child(TABLE_NAME).child(eventId).setValue(event);
 
     }

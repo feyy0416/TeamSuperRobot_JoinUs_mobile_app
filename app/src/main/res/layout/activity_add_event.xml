@@ -49,7 +49,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:drawablePadding="12dp"
-        android:hint="Time"
+        android:hint="Time(dd/MM/yy)"
         android:inputType="date"
         android:padding="8dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -13,6 +13,8 @@ public class Event {
     private String description;
     private String email;
 
+    public Event(){}
+
     public Event(String eventId, double latitude, double longitude, String time, String announcer, int imageId, String category, String title, String description, String email){
         this.eventId = eventId;
         this.latitude = latitude;
