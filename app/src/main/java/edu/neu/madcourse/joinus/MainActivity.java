@@ -256,7 +256,7 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(getBaseContext(), EventActivity.class);
                             intent.putExtra("lati", latitude);
                             intent.putExtra("long", longitude);
-                            startActivity(intent);
+//                            startActivity(intent);
 
                             List<Address> addresses = null;
                             try {
