@@ -4,6 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/JoinUs/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Users/tongz/StudioProjects/TeamSuperRobot_JoinUs_mobile_app/app/src/main/res/layout/activity_login.xml" value="0.5451282051282051" />
+        <entry key="..\:/Users/tongz/StudioProjects/TeamSuperRobot_JoinUs_mobile_app/app/src/main/res/layout/activity_maps.xml" value="0.46770833333333334" />
+        <entry key="..\:/Users/tongz/StudioProjects/TeamSuperRobot_JoinUs_mobile_app/app/src/main/res/layout/map_events_card.xml" value="0.46770833333333334" />
+        <entry key="..\:/Users/tongz/StudioProjects/TeamSuperRobot_JoinUs_mobile_app/app/src/main/res/layout/my_location_demo.xml" value="0.46770833333333334" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.145" />
         <entry key="app/src/main/res/drawable/circle.xml" value="0.1735" />
         <entry key="app/src/main/res/drawable/et_border.xml" value="0.1" />
