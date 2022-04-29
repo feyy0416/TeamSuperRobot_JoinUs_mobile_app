@@ -18,9 +18,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JoinUs">
         <activity
-            android:name=".FooterNavActivity"
-            android:exported="false" />
-        <activity
             android:name=".DetailsActivity"
             android:exported="false"
             android:theme="@style/Theme.NoActionBar" />
