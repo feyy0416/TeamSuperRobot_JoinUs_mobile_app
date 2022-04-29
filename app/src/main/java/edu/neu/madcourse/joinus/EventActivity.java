@@ -19,6 +19,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import edu.neu.madcourse.joinus.auth.User;
@@ -33,11 +35,23 @@ public class EventActivity extends AppCompatActivity {
     private static final String tableName = "Events";
     private DatabaseReference mDatabase;
 
+    private double currentLatitude;
+    private double currentLongitude;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_list);
         eventList = new ArrayList<>();
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            currentLatitude = extras.getDouble("lati");
+            currentLongitude = extras.getDouble("long");
+            Log.d("1111111111111111112",Double.toString(currentLatitude));
+            Log.d("1111111111111111112",Double.toString(currentLongitude));
+            //The key argument here must match that used in the other activity
+        }
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child(tableName).addValueEventListener(
@@ -50,6 +64,7 @@ public class EventActivity extends AppCompatActivity {
                                 eventList.add(e);
                             }
                         }
+                        eventList.sort(Comparator.comparing(o -> o.getDistance()));
                         createRecyclerView();
                     }
 
@@ -67,7 +82,7 @@ public class EventActivity extends AppCompatActivity {
         rLayoutManger = new LinearLayoutManager(this);
         recyclerView = findViewById(R.id.recyclerView_event_list);
         recyclerView.setHasFixedSize(true);
-        eventAdapter = new EventAdapter(eventList, this);
+        eventAdapter = new EventAdapter(eventList, this, currentLatitude, currentLongitude);
         recyclerView.setAdapter(eventAdapter);
         recyclerView.setLayoutManager(rLayoutManger);
 

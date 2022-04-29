@@ -1,6 +1,7 @@
 package edu.neu.madcourse.joinus;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,10 +20,20 @@ public class EventAdapter extends RecyclerView.Adapter<EventHolder> implements F
     private List<Event> eventListFull ;
     private Context mContext;
 
-    public EventAdapter(List<Event> eventList, Context mContext) {
+    private double currentLatitude;
+    private double currentLongitude;
+
+    private static final double r2d = 180.0D / 3.141592653589793D;
+    private static final double d2r = 3.141592653589793D / 180.0D;
+    private static final double d2km = 111189.57696D * r2d;
+
+    public EventAdapter(List<Event> eventList, Context mContext, double currentLatitude, double currentLongitude) {
         this.eventList = eventList;
         eventListFull = new ArrayList<>(eventList);
         this.mContext = mContext;
+        this.currentLatitude = currentLatitude;
+        this.currentLongitude = currentLongitude;
+
     }
 
 
@@ -35,6 +46,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventHolder> implements F
 
     @Override
     public void onBindViewHolder(@NonNull EventHolder holder, int position) {
+
         mContext = mContext.getApplicationContext();
         Event currentEvent = eventList.get(position);
 //        SimpleDateFormat sf = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss");
@@ -42,7 +54,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventHolder> implements F
         holder.time.setText(currentEvent.getTime());
         holder.title.setText(currentEvent.getTitle());
         holder.description.setText(currentEvent.getDescription());
-        holder.distance.setText("1km");
+
+        double distance = distance(currentEvent.getLatitude(), currentLatitude, currentEvent.getLongitude(), currentLongitude);
+        double distanceInKm = Math.round((distance / 1000) * 100.0) / 100.0;
+        currentEvent.setDistance(distanceInKm);
+        Log.d("1111111111111111112",Double.toString(currentEvent.getDistance()));
+        holder.distance.setText(Double.toString(distanceInKm) + " km");
         holder.image.setImageResource(R.drawable.icon);
     }
 
@@ -51,16 +68,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventHolder> implements F
         return eventList.size();
     }
 
-    private double distance(double lat1, double lat2, double lon1, double lon2, double el1, double el2) {
-        final int R = 6371;
-        double a = Math.sin(Math.toRadians(lat2 - lat1) / 2) * Math.sin(Math.toRadians(lat2 - lat1) / 2)
-                + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2))
-                * Math.sin(Math.toRadians(lon2 - lon1) / 2) * Math.sin(Math.toRadians(lon2 - lon1) / 2);
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-        double distance = R * c * 1000; // convert to meters
-        double height = el1 - el2;
-        distance = Math.pow(distance, 2) + Math.pow(height, 2);
-        return Math.sqrt(distance);
+    private double distance(double lt1, double lt2, double ln1, double ln2) {
+        double x = lt1 * d2r;
+        double y = lt2 * d2r;
+        return Math.acos( Math.sin(x) * Math.sin(y) + Math.cos(x) * Math.cos(y) * Math.cos(d2r * (ln1 - ln2))) * d2km;
     }
 
     @Override

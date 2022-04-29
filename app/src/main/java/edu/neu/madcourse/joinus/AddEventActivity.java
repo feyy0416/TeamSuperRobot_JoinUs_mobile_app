@@ -49,8 +49,6 @@ public class AddEventActivity extends AppCompatActivity implements AdapterView.O
 
     private String username;
 
-    private double currentLatitude;
-    private double currentLongitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,14 +67,6 @@ public class AddEventActivity extends AppCompatActivity implements AdapterView.O
         eLatitude = findViewById(R.id.edited_latitude);
         eLongitude = findViewById(R.id.edited_longitude);
 
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            currentLatitude = extras.getDouble("lati");
-            currentLongitude = extras.getDouble("long");
-            Log.d("1111111111111111111",Double.toString(currentLatitude));
-            Log.d("1111111111111111111",Double.toString(currentLongitude));
-            //The key argument here must match that used in the other activity
-        }
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         initView();

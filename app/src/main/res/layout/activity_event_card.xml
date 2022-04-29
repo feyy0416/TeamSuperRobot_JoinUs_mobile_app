@@ -8,7 +8,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="405dp"
+        android:layout_height="460dp"
         android:orientation="vertical">
 
 
@@ -29,11 +29,11 @@
 
         <TextView
             android:id="@+id/event_location"
-            android:layout_width="108dp"
-            android:layout_height="37dp"
+            android:layout_width="313dp"
+            android:layout_height="45dp"
             android:layout_below="@+id/event_time"
-            android:layout_marginStart="145dp"
-            android:layout_marginTop="314dp"
+            android:layout_marginStart="-55dp"
+            android:layout_marginTop="359dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="5dp"
             android:layout_toEndOf="@+id/event_title"
@@ -46,8 +46,8 @@
 
         <TextView
             android:id="@+id/event_description"
-            android:layout_width="287dp"
-            android:layout_height="77dp"
+            android:layout_width="407dp"
+            android:layout_height="80dp"
             android:layout_below="@+id/event_time"
             android:layout_marginStart="-148dp"
             android:layout_marginTop="275dp"

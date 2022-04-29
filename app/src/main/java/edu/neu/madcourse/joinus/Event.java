@@ -12,6 +12,7 @@ public class Event {
     private String title;
     private String description;
     private String email;
+    private double distance;
 
     public Event(){}
 
@@ -25,6 +26,7 @@ public class Event {
         this.title = title;
         this.description = description;
         this.imageId = imageId;
+        distance = 0;
     }
     public String getEventId() {
         return eventId;
@@ -48,4 +50,6 @@ public class Event {
     }
     public String getEmail(){ return email;}
     public int getImageId(){return imageId;}
+    public void setDistance(double distance){this.distance = distance;}
+    public double getDistance() { return distance; }
 }

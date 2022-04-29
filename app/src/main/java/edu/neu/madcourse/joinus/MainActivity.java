@@ -253,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
                             longitude = locationResult.getLocations().get(position).getLongitude();
 
                             //pass value to add event activity
-                            Intent intent = new Intent(getBaseContext(), AddEventActivity.class);
+                            Intent intent = new Intent(getBaseContext(), EventActivity.class);
                             intent.putExtra("lati", latitude);
                             intent.putExtra("long", longitude);
                             startActivity(intent);
