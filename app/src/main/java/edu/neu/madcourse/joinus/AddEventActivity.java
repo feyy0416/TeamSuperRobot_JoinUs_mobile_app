@@ -163,7 +163,6 @@ public class AddEventActivity extends AppCompatActivity implements AdapterView.O
                 });
 
 
-        //TODO: get user name
         Event event = new Event(eventId, latitude, longitude, time, username, imageId, category, title, description, email);
         mDatabase.child(TABLE_NAME).child(eventId).setValue(event);
 
