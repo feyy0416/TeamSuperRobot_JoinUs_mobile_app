@@ -18,8 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JoinUs">
         <activity
-            android:name=".MyLocationDemoActivity"
-            android:exported="false" />
+            android:name=".DetailsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.NoActionBar"/>
         <activity
             android:name=".AddEventActivity"
             android:exported="false" />
