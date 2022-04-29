@@ -39,7 +39,7 @@ public class EventListActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.menu_home:
-                        startActivity(new Intent(getApplicationContext(), EventListActivity.class));
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.menu_search:
