@@ -18,6 +18,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.UUID;
+
 import edu.neu.madcourse.joinus.R;
 import edu.neu.madcourse.joinus.util.Utils;
 
@@ -101,7 +103,7 @@ public class SignupActivity extends AppCompatActivity {
                                 // .setValue(username);
                                 //databaseReference.child("users").child(email).child("password")
                                 // .setValue(password);
-                                User user = new User(username, email, password);
+                                User user = new User(mAuth.getCurrentUser().getUid(), username, email, password);
                                 mDatabase.getReference("users").child(mAuth.getCurrentUser().getUid()).setValue(user);
                                 Toast.makeText(SignupActivity.this, "Signed up Successfully!",
                                         Toast.LENGTH_SHORT).show();
