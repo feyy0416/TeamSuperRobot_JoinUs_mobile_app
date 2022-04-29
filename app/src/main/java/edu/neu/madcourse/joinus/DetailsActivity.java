@@ -23,7 +23,7 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        rImage = findViewById(R.id.details_big_img);
+        rImage = findViewById(R.id.details_img0);
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference();
@@ -32,8 +32,14 @@ public class DetailsActivity extends AppCompatActivity {
         getImage.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String url = snapshot.getValue(String.class);
-                Picasso.get().load(url).into(rImage);
+                if (snapshot.hasChildren()){
+                    for (DataSnapshot item: snapshot.getChildren()){
+                        String url = item.getValue(String.class);
+                        Picasso.get().load(url).into(rImage);
+                        break;
+                    }
+
+                }
             }
 
             @Override

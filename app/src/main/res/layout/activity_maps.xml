@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".auth.SignupActivity"
     android:id="@+id/map_frame"
-    android:theme="@style/AppTheme.NoActionBar"
     android:orientation="vertical">
 
 
