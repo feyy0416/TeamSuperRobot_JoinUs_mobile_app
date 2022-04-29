@@ -80,7 +80,6 @@ public class SignupActivity extends AppCompatActivity {
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
         String repeatPassword = etRepeatPassword.getText().toString();
-        String uid = UUID.randomUUID().toString();
 
         if (TextUtils.isEmpty(username)) {
             etUsername.setError("Username cannot be empty");
@@ -104,7 +103,7 @@ public class SignupActivity extends AppCompatActivity {
                                 // .setValue(username);
                                 //databaseReference.child("users").child(email).child("password")
                                 // .setValue(password);
-                                User user = new User(uid, username, email, password);
+                                User user = new User(mAuth.getCurrentUser().getUid(), username, email, password);
                                 mDatabase.getReference("users").child(mAuth.getCurrentUser().getUid()).setValue(user);
                                 Toast.makeText(SignupActivity.this, "Signed up Successfully!",
                                         Toast.LENGTH_SHORT).show();

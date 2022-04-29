@@ -12,6 +12,7 @@ public class User {
     public List<Event> createdEvents;
     public List<Event> attendedEvents;
 
+    public User(){}
 
     public User(String uid, String username, String email, String password) {
         this.uid = uid;
