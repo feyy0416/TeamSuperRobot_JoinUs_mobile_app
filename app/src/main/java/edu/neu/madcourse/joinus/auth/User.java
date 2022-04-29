@@ -21,14 +21,14 @@ public class User {
         this.password = password;
     }
 
-    public User(String uid, String username, String email, String password, List<Event> createdEvents, List<Event> attendedEvents) {
-        this.uid = uid;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.createdEvents = createdEvents;
-        this.attendedEvents = attendedEvents;
-    }
+//    public User(String uid, String username, String email, String password, List<Event> createdEvents, List<Event> attendedEvents) {
+//        this.uid = uid;
+//        this.username = username;
+//        this.email = email;
+//        this.password = password;
+//        this.createdEvents = createdEvents;
+//        this.attendedEvents = attendedEvents;
+//    }
 
     public String getUid() {
         return uid;

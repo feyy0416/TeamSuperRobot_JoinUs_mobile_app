@@ -251,6 +251,13 @@ public class MainActivity extends AppCompatActivity {
                                     Locale.getDefault());
                             latitude = locationResult.getLocations().get(position).getLatitude();
                             longitude = locationResult.getLocations().get(position).getLongitude();
+
+                            //pass value to add event activity
+                            Intent intent = new Intent(getBaseContext(), AddEventActivity.class);
+                            intent.putExtra("lati", latitude);
+                            intent.putExtra("long", longitude);
+                            startActivity(intent);
+
                             List<Address> addresses = null;
                             try {
                                 addresses = geocoder.getFromLocation(latitude,
