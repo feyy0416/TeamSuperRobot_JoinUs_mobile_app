@@ -96,7 +96,7 @@ public class MapsActivity extends AppCompatActivity
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.menu_search:
-                        startActivity(new Intent(getApplicationContext(), EventListActivity.class));
+                        startActivity(new Intent(getApplicationContext(), EventActivity.class));
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.menu_chat:

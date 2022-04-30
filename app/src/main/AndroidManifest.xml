@@ -49,9 +49,6 @@
             android:exported="false"
             android:windowSoftInputMode="adjustUnspecified|stateHidden"/>
         <activity
-            android:name=".EventListActivity"
-            android:exported="false" />
-        <activity
             android:name=".EventActivity"
             android:exported="false" />
         <activity

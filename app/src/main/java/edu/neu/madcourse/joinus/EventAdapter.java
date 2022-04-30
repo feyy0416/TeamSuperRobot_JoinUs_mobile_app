@@ -60,7 +60,18 @@ public class EventAdapter extends RecyclerView.Adapter<EventHolder> implements F
         currentEvent.setDistance(distanceInKm);
         Log.d("1111111111111111112",Double.toString(currentEvent.getDistance()));
         holder.distance.setText(Double.toString(distanceInKm) + " km");
-        holder.image.setImageResource(R.drawable.icon);
+        if ("Cooking".equals(currentEvent.getCategory())) {
+            holder.image.setImageResource(R.drawable.img1);
+        }
+        if ("Study".equals(currentEvent.getCategory())) {
+            holder.image.setImageResource(R.drawable.img2);
+        }
+        if ("Sport".equals(currentEvent.getCategory())) {
+            holder.image.setImageResource(R.drawable.img3);
+        }
+        if ("Other".equals(currentEvent.getCategory())) {
+            holder.image.setImageResource(R.drawable.img4);
+        }
     }
 
     @Override

@@ -48,6 +48,7 @@ public class AddEventActivity extends AppCompatActivity implements AdapterView.O
     private EditText eLongitude;
 
     private String username;
+    private int imageId;
 
 
     @Override
@@ -128,7 +129,7 @@ public class AddEventActivity extends AppCompatActivity implements AdapterView.O
     }
 
     private void postEvent(String title, String description, String time, String email, double latitude, double longitude){
-        int imageId = 0;
+        imageId = 0;
         if ("Cooking".equals(category)){
             imageId = 1;
         }
@@ -155,6 +156,9 @@ public class AddEventActivity extends AppCompatActivity implements AdapterView.O
                                 if (userId.equals(user.getUid())){
                                     username = user.getUsername();
                                     Log.d("1111111111111111111",username);
+                                    Event event = new Event(eventId, latitude, longitude, time, username, imageId, category, title, description, email);
+                                    mDatabase.child(TABLE_NAME).child(eventId).setValue(event);
+                                    break;
                                 }
                             }
                         }
@@ -164,10 +168,6 @@ public class AddEventActivity extends AppCompatActivity implements AdapterView.O
                     public void onCancelled(DatabaseError databaseError) {
                     }
                 });
-
-
-        Event event = new Event(eventId, latitude, longitude, time, username, imageId, category, title, description, email);
-        mDatabase.child(TABLE_NAME).child(eventId).setValue(event);
 
     }
 }
