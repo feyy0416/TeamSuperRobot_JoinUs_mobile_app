@@ -27,6 +27,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import edu.neu.madcourse.joinus.auth.User;
+import edu.neu.madcourse.joinus.util.Utils;
 
 public class EventActivity extends AppCompatActivity {
 
@@ -54,8 +55,7 @@ public class EventActivity extends AppCompatActivity {
         if (extras != null) {
             currentLatitude = extras.getDouble("lati");
             currentLongitude = extras.getDouble("long");
-            Log.d("1111111111111111112",Double.toString(currentLatitude));
-            Log.d("1111111111111111112",Double.toString(currentLongitude));
+
             //The key argument here must match that used in the other activity
         }
 
@@ -74,7 +74,7 @@ public class EventActivity extends AppCompatActivity {
                             }
                         }
 //                        eventList.sort(Comparator.comparing(o -> o.getDistance()));
-                        Collections.sort(eventList, new SortPlaces(currentLatitude, currentLongitude));
+
                         createRecyclerView();
                     }
 
@@ -102,20 +102,13 @@ public class EventActivity extends AppCompatActivity {
             double lon1 = event1.getLongitude();
             double lat2 = event2.getLatitude();
             double lon2 = event2.getLongitude();
-            double distanceToPlace1 = distance(currentLoc.getLatitude(), currentLoc.getLongitude(), lat1, lon1);
-            double distanceToPlace2 = distance(currentLoc.getLatitude(), currentLoc.getLongitude(), lat2, lon2);
+            double distanceToPlace1 = Utils.getDistance(currentLoc.getLatitude(), currentLoc.getLongitude(), lat1, lon1);
+            event1.setDistance(distanceToPlace1);
+            double distanceToPlace2 = Utils.getDistance(currentLoc.getLatitude(), currentLoc.getLongitude(), lat2, lon2);
+            event2.setDistance(distanceToPlace2);
             return (int) (distanceToPlace1 - distanceToPlace2);
         }
-        public double distance(double fromLat, double fromLon, double toLat, double toLon) {
-            double radius = 6378137;   // approximate Earth radius, *in meters*
-            double deltaLat = toLat - fromLat;
-            double deltaLon = toLon - fromLon;
-            double angle = 2 * Math.asin( Math.sqrt(
-                    Math.pow(Math.sin(deltaLat/2), 2) +
-                            Math.cos(fromLat) * Math.cos(toLat) *
-                                    Math.pow(Math.sin(deltaLon/2), 2) ) );
-            return radius * angle;
-        }
+
     }
 
     @Override
@@ -161,6 +154,13 @@ public class EventActivity extends AppCompatActivity {
 
 
     private void createRecyclerView(){
+        for (Event event : eventList){
+            Log.d("event test", event.getTitle());
+        }
+        Collections.sort(eventList, new SortPlaces(currentLatitude, currentLongitude));
+        for (Event event : eventList){
+            Log.d("event sorted!!!!!!!!!!!!!", String.valueOf(event.getDistance()));
+        }
         rLayoutManger = new LinearLayoutManager(this);
         recyclerView = findViewById(R.id.recyclerView_event_list);
         recyclerView.setHasFixedSize(true);
