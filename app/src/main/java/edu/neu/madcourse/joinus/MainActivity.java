@@ -234,7 +234,6 @@ public class MainActivity extends AppCompatActivity {
                         tempIntent  = new Intent(getBaseContext(), EventActivity.class);
                         tempIntent.putExtra("lati", latitude);
                         tempIntent.putExtra("long", longitude);
-//                            startActivity(intent);
                         startActivity(tempIntent);
                         overridePendingTransition(0, 0);
                         return true;
@@ -244,6 +243,13 @@ public class MainActivity extends AppCompatActivity {
                         tempIntent.putExtra("long", longitude);
 //                            startActivity(intent);
                         startActivity(tempIntent);
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.menu_account:
+                        Intent intent_maps  = new Intent(getBaseContext(), AccountActivity.class);
+                        intent_maps.putExtra("lati", latitude);
+                        intent_maps.putExtra("long", longitude);
+                        startActivity(intent_maps);
                         overridePendingTransition(0, 0);
                         return true;
                 }
