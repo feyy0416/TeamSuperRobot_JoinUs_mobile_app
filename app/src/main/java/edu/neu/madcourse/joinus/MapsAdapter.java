@@ -7,20 +7,26 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import edu.neu.madcourse.joinus.auth.LoginActivity;
 
-public class MapsAdapter extends RecyclerView.Adapter<MapsHolder>{
+public class MapsAdapter extends RecyclerView.Adapter<MapsHolder> implements Filterable {
     private List<Event> list;
-    public MapsAdapter(List<Event> eventList){
-        this.list = eventList;
+    private List<Event> listFull;
+
+    public MapsAdapter(List<Event> list){
+        this.list = list;
+        listFull = new ArrayList<>(list);
     }
     @NonNull
     @Override
@@ -50,6 +56,42 @@ public class MapsAdapter extends RecyclerView.Adapter<MapsHolder>{
         });
 
     }
+
+    @Override
+    public Filter getFilter() {
+        return filter;
+    }
+
+    private Filter filter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Event> filteredList = new ArrayList<>();
+
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(listFull);
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+
+                for (Event event : listFull) {
+                    if (event.getTitle().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(event);
+                    }
+                }
+            }
+
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            list.clear();
+            list.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
 
     @Override
     public int getItemCount() {
