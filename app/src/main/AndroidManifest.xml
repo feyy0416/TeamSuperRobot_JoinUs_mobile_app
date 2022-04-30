@@ -18,6 +18,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JoinUs">
         <activity
+            android:name=".AccountActivity"
+            android:exported="false"
+            android:label="Account"/>
+        <activity
             android:name=".DetailsActivity"
             android:exported="false"
             android:theme="@style/Theme.NoActionBar" />
@@ -49,11 +53,11 @@
             android:name=".MainActivity"
             android:exported="false"
             android:label="Home"
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"/>
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
         <activity
             android:name=".EventActivity"
             android:exported="false"
-            android:label="Search for events"/>
+            android:label="Search for events" />
         <activity
             android:name=".auth.LoginActivity"
             android:exported="true">
