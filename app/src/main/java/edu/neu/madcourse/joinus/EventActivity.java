@@ -71,7 +71,7 @@ public class EventActivity extends AppCompatActivity {
                                 eventList.add(e);
                             }
                         }
-                        eventList.sort(Comparator.comparing(o -> o.getDistance()));
+//                        eventList.sort(Comparator.comparing(o -> o.getDistance()));
                         createRecyclerView();
                     }
 
@@ -105,7 +105,11 @@ public class EventActivity extends AppCompatActivity {
 
                         return true;
                     case R.id.menu_chat:
-                        startActivity(new Intent(getApplicationContext(), MapsActivity.class));
+                        Intent tempIntent  = new Intent(getBaseContext(), MapsActivity.class);
+                        tempIntent.putExtra("lati", currentLatitude);
+                        tempIntent.putExtra("long", currentLongitude);
+//                            startActivity(intent);
+                        startActivity(tempIntent);
                         overridePendingTransition(0, 0);
                         return true;
                 }

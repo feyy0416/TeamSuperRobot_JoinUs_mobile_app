@@ -8,18 +8,16 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="460dp"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
 
         <TextView
             android:id="@+id/event_time"
             android:layout_width="286dp"
             android:layout_height="40dp"
-            android:layout_marginStart="-34dp"
+            android:layout_alignParentEnd="true"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_toEndOf="@+id/event_title"
+            android:layout_marginEnd="10dp"
             android:layout_weight="1"
             android:gravity="end"
             android:text="textview"
@@ -29,14 +27,13 @@
 
         <TextView
             android:id="@+id/event_location"
-            android:layout_width="313dp"
-            android:layout_height="45dp"
-            android:layout_below="@+id/event_time"
-            android:layout_marginStart="-55dp"
-            android:layout_marginTop="359dp"
-            android:layout_marginEnd="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_below="@+id/event_title"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
-            android:layout_toEndOf="@+id/event_title"
             android:layout_weight="1"
             android:gravity="end"
             android:text="textview"
@@ -45,29 +42,13 @@
             app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
-            android:id="@+id/event_description"
-            android:layout_width="407dp"
-            android:layout_height="80dp"
-            android:layout_below="@+id/event_time"
-            android:layout_marginStart="-148dp"
-            android:layout_marginTop="275dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="5dp"
-            android:layout_toEndOf="@+id/event_title"
-            android:text="textview"
-
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <TextView
             android:id="@+id/event_title"
-            android:layout_width="147dp"
-            android:layout_height="45dp"
+            android:layout_width="302dp"
+            android:layout_height="39dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="278dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="199dp"
             android:layout_weight="1"
             android:text="textview"
             android:textColor="#000000"
@@ -78,12 +59,12 @@
 
         <ImageView
             android:id="@+id/event_img"
-            android:layout_width="300dp"
-            android:layout_height="212dp"
+            android:layout_width="251dp"
+            android:layout_height="144dp"
             android:layout_below="@+id/event_time"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="0dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginStart="68dp"
+            android:layout_marginTop="7dp"
             tools:srcCompat="@tools:sample/avatars" />
 
     </RelativeLayout>

@@ -232,7 +232,11 @@ public class MainActivity extends AppCompatActivity {
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.menu_chat:
-                        startActivity(new Intent(getApplicationContext(), MapsActivity.class));
+                        tempIntent  = new Intent(getBaseContext(), MapsActivity.class);
+                        tempIntent.putExtra("lati", latitude);
+                        tempIntent.putExtra("long", longitude);
+//                            startActivity(intent);
+                        startActivity(tempIntent);
                         overridePendingTransition(0, 0);
                         return true;
                 }

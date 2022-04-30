@@ -53,7 +53,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventHolder> implements F
 //        Date date = new Date(Long.parseLong(Long.toString(currentEvent.getTime())));
         holder.time.setText(currentEvent.getTime());
         holder.title.setText(currentEvent.getTitle());
-        holder.description.setText(currentEvent.getDescription());
+//        holder.description.setText(currentEvent.getDescription());
 
         double distance = distance(currentEvent.getLatitude(), currentLatitude, currentEvent.getLongitude(), currentLongitude);
         double distanceInKm = Math.round((distance / 1000) * 100.0) / 100.0;

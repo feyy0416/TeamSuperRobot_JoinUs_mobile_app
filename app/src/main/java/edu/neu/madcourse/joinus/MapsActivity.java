@@ -44,6 +44,9 @@ public class MapsActivity extends AppCompatActivity
     private RecyclerView.LayoutManager rLayoutManger;
     BottomNavigationView bottomNavigationView;
 
+    private double currentLatitude;
+    private double currentLongitude;
+
 
     /**
      * Request code for location permission request.
@@ -61,6 +64,15 @@ public class MapsActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            currentLatitude = extras.getDouble("lati");
+            currentLongitude = extras.getDouble("long");
+            Log.d("1111111111111111112",Double.toString(currentLatitude));
+            Log.d("1111111111111111112",Double.toString(currentLongitude));
+            //The key argument here must match that used in the other activity
+        }
 
         binding = ActivityMapsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -96,7 +108,12 @@ public class MapsActivity extends AppCompatActivity
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.menu_search:
-                        startActivity(new Intent(getApplicationContext(), EventActivity.class));
+                        //pass value to add event activity
+                        Intent tempIntent  = new Intent(getBaseContext(), EventActivity.class);
+                        tempIntent.putExtra("lati", currentLatitude);
+                        tempIntent.putExtra("long", currentLongitude);
+//                            startActivity(intent);
+                        startActivity(tempIntent);
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.menu_chat:
