@@ -27,7 +27,8 @@
             android:theme="@style/Theme.NoActionBar" />
         <activity
             android:name=".AddEventActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Post an Event"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
