@@ -42,6 +42,7 @@ public class AccountActivity extends AppCompatActivity {
 
     private static final String tableName = "Events";
     private DatabaseReference mDatabase;
+    private FirebaseAuth mAuth;
 
     private double currentLatitude;
     private double currentLongitude;
@@ -64,10 +65,14 @@ public class AccountActivity extends AppCompatActivity {
             //The key argument here must match that used in the other activity
 
         }
+
+        mAuth = FirebaseAuth.getInstance();
         btn_log_out = findViewById(R.id.btn_sign_out);
         btn_log_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mAuth.signOut();
+                signOutUser();
             }
         });
 
@@ -129,6 +134,13 @@ public class AccountActivity extends AppCompatActivity {
                 });
 
         updateView();
+    }
+
+    private void signOutUser() {
+        Intent intent = new Intent(AccountActivity.this, LoginActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 
 
