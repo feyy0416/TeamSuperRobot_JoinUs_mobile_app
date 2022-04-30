@@ -28,6 +28,11 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +51,9 @@ public class MapsActivity extends AppCompatActivity
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager rLayoutManger;
     BottomNavigationView bottomNavigationView;
+
+    private DatabaseReference mDatabase;
+    private static final String tableName = "Events";
 
     private double currentLatitude;
     private double currentLongitude;
@@ -83,21 +91,41 @@ public class MapsActivity extends AppCompatActivity
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        eventList.add(new Event("a", 0, 0,
-                "2/2/2022", "a", 1,"a", "a",
-                "XXXXXXXXXXXXXXXXXXXXX", "email"));
-        eventList.add(new Event("b", 0, 0,
-                "3/3/2022", "a", 1,"a", "b",
-                "XXXXXXXXXX" +
-                " XXXXXX XXXXX", "email2"));
-        eventList.add(new Event("c", 0, 0,
-                "3/3/2022", "a", 1,"a", "REQD",
-                "XXXXXXXXXX" +
-                        " XXXXXX XXXXX", "email2"));
+//        eventList.add(new Event("a", 0, 0,
+//                "2/2/2022", "a", 1,"a", "a",
+//                "XXXXXXXXXXXXXXXXXXXXX", "email"));
+//        eventList.add(new Event("b", 0, 0,
+//                "3/3/2022", "a", 1,"a", "b",
+//                "XXXXXXXXXX" +
+//                " XXXXXX XXXXX", "email2"));
+//        eventList.add(new Event("c", 0, 0,
+//                "3/3/2022", "a", 1,"a", "REQD",
+//                "XXXXXXXXXX" +
+//                        " XXXXXX XXXXX", "email2"));
 
 
         bottomNavigationView = findViewById(R.id.bottom_nav);
-        updateView();
+
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child(tableName).addValueEventListener(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        if (snapshot.hasChildren()) {
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                Event e = dataSnapshot.getValue(Event.class);
+                                eventList.add(e);
+                            }
+                        }
+//                        eventList.sort(Comparator.comparing(o -> o.getDistance()));
+                        updateView();
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
 
     }
 
@@ -153,7 +181,7 @@ public class MapsActivity extends AppCompatActivity
     private void updateRecyclerView(List<Event> eventList){
         rLayoutManger = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView = findViewById(R.id.rcv_map_events);
-        mapsAdapter = new MapsAdapter(eventList);
+        mapsAdapter = new MapsAdapter(eventList, currentLatitude, currentLongitude);
         recyclerView.setAdapter(mapsAdapter);
         recyclerView.setLayoutManager(rLayoutManger);
     }
@@ -172,8 +200,8 @@ public class MapsActivity extends AppCompatActivity
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        LatLng sydney = new LatLng(currentLatitude, currentLongitude);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("User's position"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap.moveCamera(CameraUpdateFactory.zoomTo(15.0f));
 

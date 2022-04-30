@@ -4,6 +4,7 @@ import static androidx.core.content.ContextCompat.startActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +24,13 @@ import edu.neu.madcourse.joinus.auth.LoginActivity;
 public class MapsAdapter extends RecyclerView.Adapter<MapsHolder> implements Filterable {
     private List<Event> list;
     private List<Event> listFull;
+    private static final double r2d = 180.0D / 3.141592653589793D;
+    private static final double d2r = 3.141592653589793D / 180.0D;
+    private static final double d2km = 111189.57696D * r2d;
+    private double currentLongitude;
+    private double currentLatitude;
 
-    public MapsAdapter(List<Event> list){
+    public MapsAdapter(List<Event> list, double currentLatitude, double currentLongitude){
         this.list = list;
         listFull = new ArrayList<>(list);
     }
@@ -41,8 +47,23 @@ public class MapsAdapter extends RecyclerView.Adapter<MapsHolder> implements Fil
 
         holder.title.setText(currentEvent.getTitle());
         holder.description.setText(currentEvent.getDescription());
-        holder.distance.setText("2.5 miles");
-        holder.image.setImageResource(R.drawable.icon);
+        double distance = distance(currentEvent.getLatitude(), currentLatitude, currentEvent.getLongitude(), currentLongitude);
+        double distanceInKm = Math.round((distance / 1000) * 100.0) / 100.0;
+        currentEvent.setDistance(distanceInKm);
+        Log.d("1111111111111111112",Double.toString(currentEvent.getDistance()));
+        holder.distance.setText(Double.toString(distanceInKm) + " km");
+        if ("Cooking".equals(currentEvent.getCategory())) {
+            holder.image.setImageResource(R.drawable.img1);
+        }
+        if ("Study".equals(currentEvent.getCategory())) {
+            holder.image.setImageResource(R.drawable.img2);
+        }
+        if ("Sport".equals(currentEvent.getCategory())) {
+            holder.image.setImageResource(R.drawable.img3);
+        }
+        if ("Other".equals(currentEvent.getCategory())) {
+            holder.image.setImageResource(R.drawable.img4);
+        }
         holder.map_event_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,6 +76,12 @@ public class MapsAdapter extends RecyclerView.Adapter<MapsHolder> implements Fil
             }
         });
 
+    }
+
+    private double distance(double lt1, double lt2, double ln1, double ln2) {
+        double x = lt1 * d2r;
+        double y = lt2 * d2r;
+        return Math.acos( Math.sin(x) * Math.sin(y) + Math.cos(x) * Math.cos(y) * Math.cos(d2r * (ln1 - ln2))) * d2km;
     }
 
     @Override

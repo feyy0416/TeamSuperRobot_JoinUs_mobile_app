@@ -20,7 +20,7 @@ public class EventHolder extends RecyclerView.ViewHolder {
         super(eventView);
         title = eventView.findViewById(R.id.event_title);
         time = eventView.findViewById(R.id.event_time);
-//        description = eventView.findViewById(R.id.event_description);
+        description = eventView.findViewById(R.id.map_event_description);
         image = eventView.findViewById(R.id.event_img);
         distance = eventView.findViewById(R.id.event_location);
         event_card = eventView.findViewById(R.id.event_card);
