@@ -47,8 +47,7 @@ public class EventActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_list);
-        bottomNavigationView = findViewById(R.id.bottom_nav);
-        updateView();
+
         eventList = new ArrayList<>();
 
         Bundle extras = getIntent().getExtras();
@@ -59,6 +58,9 @@ public class EventActivity extends AppCompatActivity {
             Log.d("1111111111111111112",Double.toString(currentLongitude));
             //The key argument here must match that used in the other activity
         }
+
+
+        updateView();
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child(tableName).addValueEventListener(
@@ -92,6 +94,7 @@ public class EventActivity extends AppCompatActivity {
     }
 
     private void updateView() {
+        bottomNavigationView = findViewById(R.id.bottom_nav);
         bottomNavigationView.setSelectedItemId(R.id.menu_search);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -110,6 +113,13 @@ public class EventActivity extends AppCompatActivity {
                         tempIntent.putExtra("long", currentLongitude);
 //                            startActivity(intent);
                         startActivity(tempIntent);
+                        overridePendingTransition(0, 0);
+                        return true;
+                    case R.id.menu_account:
+                        Intent intent_maps  = new Intent(getBaseContext(), AccountActivity.class);
+                        intent_maps.putExtra("lati", currentLatitude);
+                        intent_maps.putExtra("long", currentLongitude);
+                        startActivity(intent_maps);
                         overridePendingTransition(0, 0);
                         return true;
                 }

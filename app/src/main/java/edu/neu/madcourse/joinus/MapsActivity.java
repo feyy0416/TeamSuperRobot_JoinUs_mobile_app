@@ -167,11 +167,17 @@ public class MapsActivity extends AppCompatActivity
                         Intent tempIntent  = new Intent(getBaseContext(), EventActivity.class);
                         tempIntent.putExtra("lati", currentLatitude);
                         tempIntent.putExtra("long", currentLongitude);
-//                            startActivity(intent);
                         startActivity(tempIntent);
                         overridePendingTransition(0, 0);
                         return true;
                     case R.id.menu_chat:
+                        return true;
+                    case R.id.menu_account:
+                        Intent intent_maps  = new Intent(getBaseContext(), AccountActivity.class);
+                        intent_maps.putExtra("lati", currentLatitude);
+                        intent_maps.putExtra("long", currentLongitude);
+                        startActivity(intent_maps);
+                        overridePendingTransition(0, 0);
                         return true;
                 }
                 return false;
