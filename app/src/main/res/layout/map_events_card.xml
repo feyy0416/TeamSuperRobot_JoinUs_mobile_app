@@ -26,34 +26,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <LinearLayout
+            <TextView
+                android:id="@+id/map_event_title"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
-                    <TextView
-                        android:id="@+id/map_event_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Event 1"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="right">
-                    <TextView
-                        android:id="@+id/map_distance"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:text="2.5 miles" />
-                </LinearLayout>
-            </LinearLayout>
-
+                android:layout_height="18dp"
+                android:text="Event 1"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/map_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="18dp"
+                android:textSize="11sp"
+                android:layout_gravity="right"
+                android:text="2.5 miles" />
 
             <TextView
                 android:id="@+id/map_event_description"
