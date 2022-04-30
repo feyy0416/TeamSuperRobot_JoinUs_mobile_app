@@ -1,6 +1,7 @@
 package edu.neu.madcourse.joinus;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -72,6 +73,16 @@ public class EventAdapter extends RecyclerView.Adapter<EventHolder> implements F
         if ("Other".equals(currentEvent.getCategory())) {
             holder.image.setImageResource(R.drawable.img4);
         }
+
+        holder.event_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Context context = holder.event_card.getContext();
+                Intent intent = new Intent(context, DetailsActivity.class);
+                intent.putExtra("eventId", currentEvent.getEventId());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class EventHolder extends RecyclerView.ViewHolder {
@@ -13,6 +14,7 @@ public class EventHolder extends RecyclerView.ViewHolder {
     public TextView description;
     public ImageView image;
     public TextView distance;
+    public CardView event_card;
 
     public EventHolder(View eventView){
         super(eventView);
@@ -21,5 +23,6 @@ public class EventHolder extends RecyclerView.ViewHolder {
 //        description = eventView.findViewById(R.id.event_description);
         image = eventView.findViewById(R.id.event_img);
         distance = eventView.findViewById(R.id.event_location);
+        event_card = eventView.findViewById(R.id.event_card);
     }
 }
