@@ -142,6 +142,7 @@ public class AccountActivity extends AppCompatActivity {
         rLayoutManger = new LinearLayoutManager(this);
         recyclerView = findViewById(R.id.rcv_acc_event_list);
         recyclerView.setHasFixedSize(true);
+        recyclerView.setNestedScrollingEnabled(true);
         accAdapter = new AccountAdapter(eventList, this);
         recyclerView.setAdapter(accAdapter);
         recyclerView.setLayoutManager(rLayoutManger);
