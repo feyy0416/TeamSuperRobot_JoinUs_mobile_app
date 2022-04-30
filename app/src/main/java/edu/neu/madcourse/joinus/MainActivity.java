@@ -74,9 +74,21 @@ public class MainActivity extends AppCompatActivity {
 
     private Intent tempIntent;
 
+    private List<Event> otherEventList;
+    private List<Event> cookingEventList;
+    private List<Event> studyEventList;
+    private List<Event> sportEventList;
+    private List<Event> recEventList;
+    private DatabaseReference mDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        otherEventList = new ArrayList<>();
+        cookingEventList = new ArrayList<>();
+        studyEventList = new ArrayList<>();
+        sportEventList = new ArrayList<>();
+        recEventList = new ArrayList<>();
         setContentView(R.layout.activity_main);
 
         bottomNavigationView = findViewById(R.id.bottom_nav);
@@ -112,107 +124,186 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //btnLogOut = findViewById(R.id.btn_log_out);
-        /*btnLogOut.setOnClickListener(view -> {
-            mAuth.signOut();
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
-        }); */
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("Events").addValueEventListener(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        if (snapshot.hasChildren()) {
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                Event e = dataSnapshot.getValue(Event.class);
+                                recEventList.add(e);
 
+
+                            }
+                        }
+//                        eventList.sort(Comparator.comparing(o -> o.getDistance()));
+
+                        createRecRecyclerView();
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("Events").addValueEventListener(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        if (snapshot.hasChildren()) {
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                Event e = dataSnapshot.getValue(Event.class);
+                                if ("Sport".equals(e.getCategory())){
+                                    sportEventList.add(e);
+                                    Log.d("event added!!!!!!!!!!!!!", e.getEventId());
+                                }
+
+                            }
+                        }
+//                        eventList.sort(Comparator.comparing(o -> o.getDistance()));
+
+                        createSportRecyclerView();
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("Events").addValueEventListener(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        if (snapshot.hasChildren()) {
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                Event e = dataSnapshot.getValue(Event.class);
+                                if ("Study".equals(e.getCategory())){
+                                    studyEventList.add(e);
+                                    Log.d("event added!!!!!!!!!!!!!", e.getEventId());
+                                }
+
+                            }
+                        }
+//                        eventList.sort(Comparator.comparing(o -> o.getDistance()));
+
+                        createStudyRecyclerView();
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("Events").addValueEventListener(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        if (snapshot.hasChildren()) {
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                Event e = dataSnapshot.getValue(Event.class);
+                                if ("Cooking".equals(e.getCategory())){
+                                    cookingEventList.add(e);
+                                    Log.d("event added!!!!!!!!!!!!!", e.getEventId());
+                                }
+
+                            }
+                        }
+//                        eventList.sort(Comparator.comparing(o -> o.getDistance()));
+
+                        createCookingRecyclerView();
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+
+
+        //others
+
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("Events").addValueEventListener(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        if (snapshot.hasChildren()) {
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                Event e = dataSnapshot.getValue(Event.class);
+                                if ("Other".equals(e.getCategory())){
+                                    otherEventList.add(e);
+                                    Log.d("event added!!!!!!!!!!!!!", e.getEventId());
+                                }
+
+                            }
+                        }
+//                        eventList.sort(Comparator.comparing(o -> o.getDistance()));
+
+                        createOthersRecyclerView();
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+
+    }
+
+    private void createRecRecyclerView(){
         hotEvents = findViewById(R.id.rcv_hot_events);
         hotEvents.setHasFixedSize(true);
         hotEvents.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,
                 false));
+        HotEventsAdapter othersAdapter = new HotEventsAdapter(recEventList);
+        hotEvents.setAdapter(othersAdapter);
+    }
 
-        List<Event> hotEventsList = new ArrayList<>();
-
-        hotEventsList.add(new Event("a", 0, 0, "0", "a", R.drawable.app_logo_round, "a", "This is title a",
-                "XXXXXXXXXXXXXXXXXXXXX", "email"));
-        hotEventsList.add(new Event("b", 0, 0, "0", "a", R.drawable.app_logo_round, "b", "This is " +
-                "title b",
-                "XXXXXXXXXXXXXXXXXXXXX", "email"));
-        hotEventsList.add(new Event("c", 0, 0, "0", "a", R.drawable.app_logo_round, "c", "This is " +
-                "title c",
-                "XXXXXXXXXXXXXXXXXXXXX", "email"));
-
-        HotEventsAdapter  hotEventsAdapter = new HotEventsAdapter(hotEventsList);
-        hotEvents.setAdapter(hotEventsAdapter);
-
-        sports = findViewById(R.id.rcv_sports);
-        sports.setHasFixedSize(true);
-        sports.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,
-                false));
-
-        List<Event> sportsList = new ArrayList<>();
-
-        sportsList.add(new Event("a", 0, 0, "0", "a", R.drawable.app_logo_round, "a", "This is title a",
-                "XXXXXXXXXXXXXXXXXXXXX", "email"));
-        sportsList.add(new Event("b", 0, 0, "0", "a", R.drawable.app_logo_round, "b", "This is " +
-                "title b",
-                "XXXXXXXXXXXXXXXXXXXXX", "email"));
-        sportsList.add(new Event("c", 0, 0, "0", "a", R.drawable.app_logo_round, "c", "This is " +
-                "title c",
-                "XXXXXXXXXXXXXXXXXXXXX", "email"));
-
-        HotEventsAdapter  sportsAdapter = new HotEventsAdapter(sportsList);
-        sports.setAdapter(sportsAdapter);
-
-        study = findViewById(R.id.rcv_study);
-        study.setHasFixedSize(true);
-        study.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,
-                false));
-
-        List<Event> studyList = new ArrayList<>();
-
-        studyList.add(new Event("a", 0, 0, "0", "a", R.drawable.app_logo_round, "a", "This is title a",
-                "XXXXXXXXXXXXXXXXXXXXX", "email"));
-        studyList.add(new Event("b", 0, 0, "0", "a", R.drawable.app_logo_round, "b", "This is " +
-                "title b",
-                "XXXXXXXXXXXXXXXXXXXXX", "email"));
-        studyList.add(new Event("c", 0, 0, "0", "a", R.drawable.app_logo_round, "c", "This is " +
-                "title c",
-                "XXXXXXXXXXXXXXXXXXXXX", "email"));
-
-        HotEventsAdapter  studyAdapter = new HotEventsAdapter(studyList);
-        study.setAdapter(sportsAdapter);
-
+    private void createCookingRecyclerView(){
         cooking = findViewById(R.id.rcv_cooking);
         cooking.setHasFixedSize(true);
         cooking.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,
                 false));
+        HotEventsAdapter othersAdapter = new HotEventsAdapter(cookingEventList);
+        cooking.setAdapter(othersAdapter);
+    }
 
-        List<Event> cookingList = new ArrayList<>();
+    private void createStudyRecyclerView(){
+        study = findViewById(R.id.rcv_study);
+        study.setHasFixedSize(true);
+        study.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,
+                false));
+        HotEventsAdapter othersAdapter = new HotEventsAdapter(studyEventList);
+        study.setAdapter(othersAdapter);
+    }
 
-        cookingList.add(new Event("a", 0, 0, "0", "a", R.drawable.app_logo_round, "a", "This is title a",
-                "XXXXXXXXXXXXXXXXXXXXX", "email"));
-        cookingList.add(new Event("b", 0, 0, "0", "a", R.drawable.app_logo_round, "b", "This is " +
-                "title b",
-                "XXXXXXXXXXXXXXXXXXXXX", "email"));
-        cookingList.add(new Event("c", 0, 0, "0", "a", R.drawable.app_logo_round, "c", "This is " +
-                "title c",
-                "XXXXXXXXXXXXXXXXXXXXX", "email"));
+    private void createSportRecyclerView(){
+        sports = findViewById(R.id.rcv_sports);
+        sports.setHasFixedSize(true);
+        sports.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,
+                false));
+        HotEventsAdapter othersAdapter = new HotEventsAdapter(sportEventList);
+        sports.setAdapter(othersAdapter);
+    }
 
-        HotEventsAdapter  cookingAdapter = new HotEventsAdapter(studyList);
-        cooking.setAdapter(cookingAdapter);
-
+    private void createOthersRecyclerView(){
+        for(Event e : otherEventList){
+            Log.d("event:::", e.getEventId());
+        }
         others = findViewById(R.id.rcv_others);
         others.setHasFixedSize(true);
         others.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,
                 false));
-
-        List<Event> othersList = new ArrayList<>();
-
-        othersList.add(new Event("a", 0, 0, "0", "a", R.drawable.app_logo_round, "a", "This is title a",
-                "XXXXXXXXXXXXXXXXXXXXX", "email"));
-        othersList.add(new Event("b", 0, 0, "0", "a", R.drawable.app_logo_round, "b", "This is " +
-                "title b",
-                "XXXXXXXXXXXXXXXXXXXXX", "email"));
-        othersList.add(new Event("c", 0, 0, "0", "a", R.drawable.app_logo_round, "c", "This is " +
-                "title c",
-                "XXXXXXXXXXXXXXXXXXXXX", "email"));
-
-        HotEventsAdapter  othersAdapter = new HotEventsAdapter(studyList);
+        HotEventsAdapter othersAdapter = new HotEventsAdapter(otherEventList);
         others.setAdapter(othersAdapter);
+        Log.d("event rvc created!!!!!!!!!!!!!", "YEAHHHHHHHH");
     }
+
 
     @Override
     public void onResume() {
@@ -368,6 +459,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public double getLatitude(){ return latitude;}
-    public double getLongitude(){ return longitude;}
 }

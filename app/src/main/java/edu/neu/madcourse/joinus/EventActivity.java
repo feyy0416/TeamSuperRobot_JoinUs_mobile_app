@@ -11,10 +11,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.SearchView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,6 +29,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import edu.neu.madcourse.joinus.auth.LoginActivity;
 import edu.neu.madcourse.joinus.auth.User;
 import edu.neu.madcourse.joinus.util.Utils;
 
@@ -41,6 +45,7 @@ public class EventActivity extends AppCompatActivity {
 
     private double currentLatitude;
     private double currentLongitude;
+    private FloatingActionButton addEventBtn;
 
     private BottomNavigationView bottomNavigationView;
 
@@ -48,6 +53,15 @@ public class EventActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_list);
+
+        addEventBtn = findViewById(R.id.add_event);
+        addEventBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EventActivity.this, AddEventActivity.class);
+                startActivity(intent);
+            }
+        });
 
         eventList = new ArrayList<>();
 
