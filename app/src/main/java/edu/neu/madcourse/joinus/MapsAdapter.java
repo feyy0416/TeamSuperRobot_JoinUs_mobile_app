@@ -43,6 +43,7 @@ public class MapsAdapter extends RecyclerView.Adapter<MapsHolder>{
 
                 Context context = holder.map_event_card.getContext();
                 Intent intent = new Intent(context, DetailsActivity.class);
+                intent.putExtra("eventId", currentEvent.getEventId());
                 context.startActivity(intent);
 
             }

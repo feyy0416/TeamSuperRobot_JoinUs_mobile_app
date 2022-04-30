@@ -9,10 +9,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
@@ -20,24 +19,84 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
+
 
 public class DetailsActivity extends AppCompatActivity {
 
-    ImageView img0;
-    ImageView img1;
-    ImageView img2;
+    private TextView title;
+    private TextView time;
+    private TextView description;
+    private ImageView image;
+    private TextView latitude;
+    private TextView longitude;
+    private TextView email;
+    private String eventId;
     ImageButton btn_back;
     BottomNavigationView bottomNavigationView;
+
+    private static final String tableName = "Events";
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            eventId = extras.getString("eventId");
+            Log.d("111111111111111122222",eventId);
+            //The key argument here must match that used in the other activity
+        }
 
-        img0 = findViewById(R.id.details_img0);
-        img1 = findViewById(R.id.details_img1);
-        img2 = findViewById(R.id.details_img2);
+        title = findViewById(R.id.details_title);
+        time = findViewById(R.id.edited_time);
+        description = findViewById(R.id.edited_description);
+        image = findViewById(R.id.details_img);
+        latitude = findViewById(R.id.edited_latitude);
+        longitude = findViewById(R.id.edited_longitude);
+        email = findViewById(R.id.edited_email);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child(tableName).addValueEventListener(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        if (snapshot.hasChildren()) {
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                                Event e = dataSnapshot.getValue(Event.class);
+                                if (eventId.equals(e.getEventId())){
+                                    title.setText(e.getTitle());
+                                    time.setText(e.getTime());
+                                    description.setText(e.getDescription());
+                                    latitude.setText(Double.toString(e.getLatitude()));
+                                    longitude.setText(Double.toString(e.getLongitude()));
+                                    email.setText(e.getEmail());
+                                    String category = e.getCategory();
+                                    if ("Cooking".equals(category)) {
+                                        image.setImageResource(R.drawable.img1);
+                                    }
+                                    if ("Study".equals(category)) {
+                                        image.setImageResource(R.drawable.img2);
+                                    }
+                                    if ("Sport".equals(category)) {
+                                        image.setImageResource(R.drawable.img3);
+                                    }
+                                    if ("Other".equals(category)) {
+                                        image.setImageResource(R.drawable.img4);
+                                    }
+
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                    }
+                });
+
+
         btn_back = findViewById(R.id.btn_back);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override

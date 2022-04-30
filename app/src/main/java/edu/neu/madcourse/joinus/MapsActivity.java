@@ -69,8 +69,6 @@ public class MapsActivity extends AppCompatActivity
         if (extras != null) {
             currentLatitude = extras.getDouble("lati");
             currentLongitude = extras.getDouble("long");
-            Log.d("1111111111111111112",Double.toString(currentLatitude));
-            Log.d("1111111111111111112",Double.toString(currentLongitude));
             //The key argument here must match that used in the other activity
         }
 
