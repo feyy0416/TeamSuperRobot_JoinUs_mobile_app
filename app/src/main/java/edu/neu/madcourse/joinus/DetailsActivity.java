@@ -47,14 +47,13 @@ public class DetailsActivity extends AppCompatActivity {
             Log.d("111111111111111122222",eventId);
             //The key argument here must match that used in the other activity
         }
-
         title = findViewById(R.id.details_title);
-        time = findViewById(R.id.edited_time);
-        description = findViewById(R.id.edited_description);
+        time = findViewById(R.id.details_time);
+        description = findViewById(R.id.details_description);
         image = findViewById(R.id.details_img);
-        latitude = findViewById(R.id.edited_latitude);
-        longitude = findViewById(R.id.edited_longitude);
-        email = findViewById(R.id.edited_email);
+        latitude = findViewById(R.id.details_latitude);
+        longitude = findViewById(R.id.details_longitude);
+        email = findViewById(R.id.details_email);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child(tableName).addValueEventListener(
@@ -66,10 +65,15 @@ public class DetailsActivity extends AppCompatActivity {
                                 Event e = dataSnapshot.getValue(Event.class);
                                 if (eventId.equals(e.getEventId())){
                                     title.setText(e.getTitle());
+                                    Log.d("111111111111111122222","title set");
                                     time.setText(e.getTime());
+                                    Log.d("111111111111111122222","time");
                                     description.setText(e.getDescription());
+                                    Log.d("111111111111111122222","desc");
                                     latitude.setText(Double.toString(e.getLatitude()));
+                                    Log.d("111111111111111122222","la");
                                     longitude.setText(Double.toString(e.getLongitude()));
+                                    Log.d("111111111111111122222","llo");
                                     email.setText(e.getEmail());
                                     String category = e.getCategory();
                                     if ("Cooking".equals(category)) {
@@ -84,7 +88,7 @@ public class DetailsActivity extends AppCompatActivity {
                                     if ("Other".equals(category)) {
                                         image.setImageResource(R.drawable.img4);
                                     }
-
+                                    Log.d("111111111111111122222","img");
                                     break;
                                 }
                             }

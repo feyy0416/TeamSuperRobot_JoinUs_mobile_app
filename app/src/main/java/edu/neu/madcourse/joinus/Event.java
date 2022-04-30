@@ -26,6 +26,7 @@ public class Event {
         this.title = title;
         this.description = description;
         this.imageId = imageId;
+        this.email = email;
         distance = 0;
     }
     public String getEventId() {
