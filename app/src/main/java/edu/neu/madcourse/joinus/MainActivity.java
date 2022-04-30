@@ -272,20 +272,24 @@ public class MainActivity extends AppCompatActivity {
 
                         if (locationResult != null && locationResult.getLocations().size() >0){
                             int position = locationResult.getLocations().size() - 1;
-                            Geocoder geocoder = new Geocoder(getApplicationContext(),
-                                    Locale.getDefault());
+                            //Geocoder geocoder = new Geocoder(getApplicationContext(),
+                                    //Locale.getDefault());
                             latitude = locationResult.getLocations().get(position).getLatitude();
                             longitude = locationResult.getLocations().get(position).getLongitude();
 
 
-                            List<Address> addresses = null;
+                            /*List<Address> addresses = null;
                             try {
                                 addresses = geocoder.getFromLocation(latitude,
                                         longitude, 1);
                             } catch (IOException e) {
                                 e.printStackTrace();
+                            }*/
+                            try {
+                                cityName.setText(Utils.getCityName(latitude, longitude));
+                            } catch (IOException e) {
+                                e.printStackTrace();
                             }
-                            cityName.setText(addresses.get(0).getLocality() + ", " + addresses.get(0).getAdminArea());
                         }
                     }}, Looper.getMainLooper());
             } else {

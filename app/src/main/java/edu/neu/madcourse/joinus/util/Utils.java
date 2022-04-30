@@ -1,7 +1,16 @@
 package edu.neu.madcourse.joinus.util;
 
+import static com.firebase.ui.auth.AuthUI.getApplicationContext;
+
+import android.annotation.SuppressLint;
+import android.location.Address;
+import android.location.Geocoder;
 import android.view.View;
 import android.widget.EditText;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 public class Utils {
 
@@ -46,4 +55,20 @@ public class Utils {
         // calculate the result
         return(c * r);
     }
+
+    public static String getCityName(double latitude, double longitude) throws IOException {
+        String cityName;
+        @SuppressLint("RestrictedApi") Geocoder geocoder = new Geocoder(getApplicationContext(),
+                Locale.getDefault());
+        List<Address> addresses = null;
+        try {
+            addresses = geocoder.getFromLocation(latitude,
+                    longitude, 1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        cityName = addresses.get(0).getLocality() + ", " + addresses.get(0).getAdminArea();
+        return cityName;
+    }
+
 }

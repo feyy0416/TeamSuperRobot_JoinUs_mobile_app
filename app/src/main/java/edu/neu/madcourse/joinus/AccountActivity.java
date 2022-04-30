@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -27,6 +28,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.neu.madcourse.joinus.auth.LoginActivity;
+import edu.neu.madcourse.joinus.auth.SignupActivity;
 import edu.neu.madcourse.joinus.auth.User;
 
 public class AccountActivity extends AppCompatActivity {
@@ -62,6 +65,11 @@ public class AccountActivity extends AppCompatActivity {
 
         }
         btn_log_out = findViewById(R.id.btn_sign_out);
+        btn_log_out.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            }
+        });
 
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
