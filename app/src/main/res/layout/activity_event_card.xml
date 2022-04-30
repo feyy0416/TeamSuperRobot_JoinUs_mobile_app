@@ -2,72 +2,86 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="340dp"
+    android:layout_height="wrap_content"
     tools:context=".EventActivity">
-
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
-        <TextView
-            android:id="@+id/event_time"
-            android:layout_width="286dp"
-            android:layout_height="40dp"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="10dp"
-            android:layout_weight="1"
-            android:gravity="end"
-            android:text="textview"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/event_location"
-            android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:layout_below="@+id/event_title"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="1"
-            android:gravity="end"
-            android:text="textview"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <TextView
-            android:id="@+id/event_title"
-            android:layout_width="302dp"
-            android:layout_height="39dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="199dp"
-            android:layout_weight="1"
-            android:text="textview"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true">
         <ImageView
             android:id="@+id/event_img"
-            android:layout_width="251dp"
-            android:layout_height="144dp"
-            android:layout_below="@+id/event_time"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="68dp"
-            android:layout_marginTop="7dp"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_width="300dp"
+            android:layout_height="225dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginHorizontal="20dp"
+            tools:srcCompat="@drawable/img1" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="15dp">
+            <TextView
+                android:id="@+id/event_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart= "true"
+                android:layout_marginHorizontal="5dp"
+                android:text="event_title"
+                android:textColor="#000000"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
-    </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="15dp">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:gravity="end"
+                app:srcCompat="@drawable/ic_baseline_location_on_24" />
+            <TextView
+                android:id="@+id/event_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_gravity="right"
+                android:text="distance"
+                android:textSize="18sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:gravity="end"
+                app:srcCompat="@drawable/ic_baseline_date_range_24" />
+            <TextView
+                android:id="@+id/event_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:gravity="start"
+                android:text="date_time"
+                android:textSize="18sp" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/map_event_description"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="5dp"
+            android:text="@string/details_desc" />
+
+
+
+    </LinearLayout>
 
 
 </androidx.cardview.widget.CardView>
