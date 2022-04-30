@@ -208,7 +208,7 @@ public class MapsActivity extends AppCompatActivity
 
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(currentLatitude, currentLongitude);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("User's position"));
+//        mMap.addMarker(new MarkerOptions().position(sydney).title("User's position"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
         mMap.moveCamera(CameraUpdateFactory.zoomTo(15.0f));
 

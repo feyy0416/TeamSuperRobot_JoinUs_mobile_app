@@ -27,6 +27,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import edu.neu.madcourse.joinus.auth.User;
+import edu.neu.madcourse.joinus.util.Utils;
 
 public class EventActivity extends AppCompatActivity {
 
@@ -54,8 +55,7 @@ public class EventActivity extends AppCompatActivity {
         if (extras != null) {
             currentLatitude = extras.getDouble("lati");
             currentLongitude = extras.getDouble("long");
-            Log.d("1111111111111111112",Double.toString(currentLatitude));
-            Log.d("1111111111111111112",Double.toString(currentLongitude));
+
             //The key argument here must match that used in the other activity
         }
 
@@ -74,6 +74,7 @@ public class EventActivity extends AppCompatActivity {
                             }
                         }
 //                        eventList.sort(Comparator.comparing(o -> o.getDistance()));
+
                         createRecyclerView();
                     }
 
@@ -85,6 +86,29 @@ public class EventActivity extends AppCompatActivity {
 
 //        eventList.add(new Event("a", 0, 0, "2/2/2022", "a", 1,"a", "This is title a", "XXXXXXXXXXXXXXXXXXXXX", "email"));
 //        eventList.add(new Event("b", 0, 0, "3/3/2022", "a", 1,"a", "This is title b", "XXXXXXXXXX XXXXXX XXXXX", "email2"));
+    }
+
+    public class SortPlaces implements Comparator<Event> {
+        Event currentLoc;
+
+        public SortPlaces(double latitude, double longitude){
+            currentLoc = new Event("curLoc", latitude, longitude,
+                    "2/2/2022", "a", 1,"a", "X", "X", "email");;
+        }
+
+        @Override
+        public int compare(Event event1, Event event2) {
+            double lat1 = event1.getLatitude();
+            double lon1 = event1.getLongitude();
+            double lat2 = event2.getLatitude();
+            double lon2 = event2.getLongitude();
+            double distanceToPlace1 = Utils.getDistance(currentLoc.getLatitude(), currentLoc.getLongitude(), lat1, lon1);
+            event1.setDistance(distanceToPlace1);
+            double distanceToPlace2 = Utils.getDistance(currentLoc.getLatitude(), currentLoc.getLongitude(), lat2, lon2);
+            event2.setDistance(distanceToPlace2);
+            return (int) (distanceToPlace1 - distanceToPlace2);
+        }
+
     }
 
     @Override
@@ -130,6 +154,13 @@ public class EventActivity extends AppCompatActivity {
 
 
     private void createRecyclerView(){
+        for (Event event : eventList){
+            Log.d("event test", event.getTitle());
+        }
+        Collections.sort(eventList, new SortPlaces(currentLatitude, currentLongitude));
+        for (Event event : eventList){
+            Log.d("event sorted!!!!!!!!!!!!!", String.valueOf(event.getDistance()));
+        }
         rLayoutManger = new LinearLayoutManager(this);
         recyclerView = findViewById(R.id.recyclerView_event_list);
         recyclerView.setHasFixedSize(true);
