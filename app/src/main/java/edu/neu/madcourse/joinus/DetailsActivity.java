@@ -26,6 +26,7 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView title;
     private TextView time;
     private TextView description;
+    private TextView announcer;
     private ImageView image;
     private TextView latitude;
     private TextView longitude;
@@ -54,6 +55,7 @@ public class DetailsActivity extends AppCompatActivity {
         latitude = findViewById(R.id.details_latitude);
         longitude = findViewById(R.id.details_longitude);
         email = findViewById(R.id.details_email);
+        announcer = findViewById(R.id.details_annoucer);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child(tableName).addValueEventListener(
@@ -64,6 +66,7 @@ public class DetailsActivity extends AppCompatActivity {
                             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                 Event e = dataSnapshot.getValue(Event.class);
                                 if (eventId.equals(e.getEventId())){
+                                    announcer.setText(e.getAnnouncer());
                                     title.setText(e.getTitle());
                                     Log.d("111111111111111122222","title set");
                                     time.setText(e.getTime());
