@@ -3,14 +3,18 @@ package edu.neu.madcourse.joinus;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,6 +28,7 @@ public class DetailsActivity extends AppCompatActivity {
     ImageView img1;
     ImageView img2;
     ImageButton btn_back;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,24 @@ public class DetailsActivity extends AppCompatActivity {
             }
         });
 
+        bottomNavigationView = findViewById(R.id.bottom_direct);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.menu_direction:
+                        getDirections();
+                        item.setChecked(false);
+                        return true;
+                    case R.id.menu_share:
+                        Log.d("share", "share selected");
+                        item.setChecked(false);
+                        return true;
+
+                }
+                return false;
+            }
+        });
 //        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
 //        DatabaseReference databaseReference = firebaseDatabase.getReference();
 //        DatabaseReference getImage = databaseReference.child("Images");
@@ -70,5 +93,14 @@ public class DetailsActivity extends AppCompatActivity {
 //                Toast.makeText(DetailsActivity.this, "Error Loading Image", Toast.LENGTH_SHORT).show();
 //            }
 //        });
+    }
+
+    private void getDirections() {
+        Uri gmmIntentUri = Uri.parse("geo:37.7749,-122.4194");
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        if (mapIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(mapIntent);
+        }
     }
 }
