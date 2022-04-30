@@ -96,7 +96,7 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void getDirections() {
-        Uri gmmIntentUri = Uri.parse("geo:37.7749,-122.4194");
+        Uri gmmIntentUri = Uri.parse("google.navigation:q=Taronga+Zoo,+Sydney+Australia");
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
         mapIntent.setPackage("com.google.android.apps.maps");
         if (mapIntent.resolveActivity(getPackageManager()) != null) {
