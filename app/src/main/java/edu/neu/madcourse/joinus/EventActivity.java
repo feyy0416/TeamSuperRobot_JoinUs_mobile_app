@@ -74,6 +74,7 @@ public class EventActivity extends AppCompatActivity {
                             }
                         }
 //                        eventList.sort(Comparator.comparing(o -> o.getDistance()));
+                        Collections.sort(eventList, new SortPlaces(currentLatitude, currentLongitude));
                         createRecyclerView();
                     }
 
@@ -85,6 +86,36 @@ public class EventActivity extends AppCompatActivity {
 
 //        eventList.add(new Event("a", 0, 0, "2/2/2022", "a", 1,"a", "This is title a", "XXXXXXXXXXXXXXXXXXXXX", "email"));
 //        eventList.add(new Event("b", 0, 0, "3/3/2022", "a", 1,"a", "This is title b", "XXXXXXXXXX XXXXXX XXXXX", "email2"));
+    }
+
+    public class SortPlaces implements Comparator<Event> {
+        Event currentLoc;
+
+        public SortPlaces(double latitude, double longitude){
+            currentLoc = new Event("curLoc", latitude, longitude,
+                    "2/2/2022", "a", 1,"a", "X", "X", "email");;
+        }
+
+        @Override
+        public int compare(Event event1, Event event2) {
+            double lat1 = event1.getLatitude();
+            double lon1 = event1.getLongitude();
+            double lat2 = event2.getLatitude();
+            double lon2 = event2.getLongitude();
+            double distanceToPlace1 = distance(currentLoc.getLatitude(), currentLoc.getLongitude(), lat1, lon1);
+            double distanceToPlace2 = distance(currentLoc.getLatitude(), currentLoc.getLongitude(), lat2, lon2);
+            return (int) (distanceToPlace1 - distanceToPlace2);
+        }
+        public double distance(double fromLat, double fromLon, double toLat, double toLon) {
+            double radius = 6378137;   // approximate Earth radius, *in meters*
+            double deltaLat = toLat - fromLat;
+            double deltaLon = toLon - fromLon;
+            double angle = 2 * Math.asin( Math.sqrt(
+                    Math.pow(Math.sin(deltaLat/2), 2) +
+                            Math.cos(fromLat) * Math.cos(toLat) *
+                                    Math.pow(Math.sin(deltaLon/2), 2) ) );
+            return radius * angle;
+        }
     }
 
     @Override
