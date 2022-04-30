@@ -181,7 +181,8 @@ public class MapsActivity extends AppCompatActivity
     private void updateRecyclerView(List<Event> eventList){
         rLayoutManger = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView = findViewById(R.id.rcv_map_events);
-        mapsAdapter = new MapsAdapter(eventList, currentLatitude, currentLongitude);
+        recyclerView.setNestedScrollingEnabled(true);
+        mapsAdapter = new MapsAdapter(eventList, this, currentLatitude, currentLongitude);
         recyclerView.setAdapter(mapsAdapter);
         recyclerView.setLayoutManager(rLayoutManger);
     }

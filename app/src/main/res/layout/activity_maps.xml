@@ -8,6 +8,16 @@
     android:id="@+id/map_frame"
     android:orientation="vertical">
 
+
+    <!--    <HorizontalScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginBottom="50dp">-->
+
+    <!--    </HorizontalScrollView>-->
+
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
@@ -15,24 +25,19 @@
         android:layout_height="match_parent"
         tools:context=".MapsActivity" />
 
-
-    <HorizontalScrollView
-        android:layout_width="match_parent"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_map_events"
+        android:layout_width="391dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/bottom_nav"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="50dp">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcv_map_events"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_margin="20dp"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:ignore="MissingConstraints" />
-    </HorizontalScrollView>
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:ignore="MissingConstraints" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"

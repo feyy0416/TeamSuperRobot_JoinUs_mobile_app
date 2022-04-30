@@ -29,10 +29,12 @@ public class MapsAdapter extends RecyclerView.Adapter<MapsHolder> implements Fil
     private static final double d2km = 111189.57696D * r2d;
     private double currentLongitude;
     private double currentLatitude;
+    private Context mContext;
 
-    public MapsAdapter(List<Event> list, double currentLatitude, double currentLongitude){
+    public MapsAdapter(List<Event> list, Context mContext, double currentLatitude, double currentLongitude){
         this.list = list;
         listFull = new ArrayList<>(list);
+        this.mContext = mContext;
     }
     @NonNull
     @Override
@@ -43,8 +45,8 @@ public class MapsAdapter extends RecyclerView.Adapter<MapsHolder> implements Fil
 
     @Override
     public void onBindViewHolder(@NonNull MapsHolder holder, int position) {
+        mContext = mContext.getApplicationContext();
         Event currentEvent = list.get(position);
-
         holder.title.setText(currentEvent.getTitle());
         holder.description.setText(currentEvent.getDescription());
         double distance = distance(currentEvent.getLatitude(), currentLatitude, currentEvent.getLongitude(), currentLongitude);
