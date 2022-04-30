@@ -12,6 +12,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Looper;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,12 +48,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import edu.neu.madcourse.joinus.auth.LoginActivity;
+import edu.neu.madcourse.joinus.auth.SignupActivity;
 import edu.neu.madcourse.joinus.util.Utils;
 
 public class MainActivity extends AppCompatActivity {
     private TextView tvUsername;
     private TextView cityName;
-    private EditText search;
     private RecyclerView hotEvents;
     private RecyclerView sports;
     private RecyclerView study;
@@ -88,8 +90,6 @@ public class MainActivity extends AppCompatActivity {
         cityName = findViewById(R.id.location);
         getCurrentLocation();
 
-        search = findViewById(R.id.search);
-        Utils.setInputReset(search);
 
         //display username
         tvUsername = findViewById(R.id.username);
