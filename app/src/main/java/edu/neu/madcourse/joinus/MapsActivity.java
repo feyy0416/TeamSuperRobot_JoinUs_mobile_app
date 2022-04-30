@@ -1,18 +1,24 @@
 package edu.neu.madcourse.joinus;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import android.widget.SearchView;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import android.view.inputmethod.EditorInfo;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -78,17 +84,43 @@ public class MapsActivity extends AppCompatActivity
         mapFragment.getMapAsync(this);
 
         eventList.add(new Event("a", 0, 0,
-                "2/2/2022", "a", 1,"a", "This is title a",
+                "2/2/2022", "a", 1,"a", "a",
                 "XXXXXXXXXXXXXXXXXXXXX", "email"));
         eventList.add(new Event("b", 0, 0,
-                "3/3/2022", "a", 1,"a", "This is title b",
+                "3/3/2022", "a", 1,"a", "b",
                 "XXXXXXXXXX" +
                 " XXXXXX XXXXX", "email2"));
+        eventList.add(new Event("c", 0, 0,
+                "3/3/2022", "a", 1,"a", "REQD",
+                "XXXXXXXXXX" +
+                        " XXXXXX XXXXX", "email2"));
 
 
         bottomNavigationView = findViewById(R.id.bottom_nav);
         updateView();
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu event) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.event_menu, event);
+        MenuItem searchItem = event.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mapsAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+        return true;
     }
 
     private void updateView() {
@@ -207,5 +239,7 @@ public class MapsActivity extends AppCompatActivity
         PermissionUtils.PermissionDeniedDialog
                 .newInstance(true).show(getSupportFragmentManager(), "dialog");
     }
+
+
 }
 
