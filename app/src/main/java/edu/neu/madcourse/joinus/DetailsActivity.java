@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
@@ -19,6 +20,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import edu.neu.madcourse.joinus.auth.LoginActivity;
 
 
 public class DetailsActivity extends AppCompatActivity {
@@ -119,11 +122,12 @@ public class DetailsActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.menu_direction:
                         getDirections();
-                        item.setChecked(false);
+                        item.setChecked(true);
                         return true;
                     case R.id.menu_share:
-                        Log.d("share", "share selected");
-                        item.setChecked(false);
+                        Toast.makeText(DetailsActivity.this, "Share, coming soon!",
+                                Toast.LENGTH_SHORT).show();
+                        item.setChecked(true);
                         return true;
 
                 }
