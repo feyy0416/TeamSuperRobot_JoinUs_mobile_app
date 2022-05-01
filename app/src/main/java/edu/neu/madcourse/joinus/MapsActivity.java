@@ -124,8 +124,13 @@ public class MapsActivity extends AppCompatActivity
                     public void onDataChange(DataSnapshot snapshot) {
                         if (snapshot.hasChildren()) {
                             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                                Event e = dataSnapshot.getValue(Event.class);
-                                eventList.add(e);
+                                Event event = dataSnapshot.getValue(Event.class);
+                                eventList.add(event);
+                                LatLng pos = new LatLng(event.getLatitude(), event.getLongitude());
+                                Log.d("test marker", String.valueOf(event.getLatitude()));
+                                mMap.addMarker(new MarkerOptions()
+                                        .position(pos)
+                                        .title(event.getTitle()));
                             }
                         }
 //                        eventList.sort(Comparator.comparing(o -> o.getDistance()));
@@ -264,12 +269,27 @@ public class MapsActivity extends AppCompatActivity
 //        Log.d("cur lat", String.valueOf(currentLatitude));
 //        Log.d("curlong", String.valueOf(currentLongitude));
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(currentLatitude, currentLongitude);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("User's position"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng sydney = new LatLng(-33.852, 151.211);
+//        mMap.addMarker(new MarkerOptions()
+//                .position(sydney)
+//                .title("Marker in Sydney"));
+        // [START_EXCLUDE silent]
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+        LatLng curLoc = new LatLng(currentLatitude, currentLongitude);
+////        mMap.addMarker(new MarkerOptions().position(sydney).title("User's position"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(curLoc));
         mMap.moveCamera(CameraUpdateFactory.zoomTo(15.0f));
         mMap.setOnMyLocationButtonClickListener(this);
-
+//        Log.d("test marker", String.valueOf(eventList.size()));
+//        for(Event event: eventList){
+//            LatLng pos = new LatLng(event.getLatitude(), event.getLongitude());
+//            Log.d("test marker", String.valueOf(event.getLatitude()));
+//            mMap.addMarker(new MarkerOptions()
+//                    .position(pos)
+//                    .title(event.getTitle()));
+//            mMap.moveCamera(CameraUpdateFactory.newLatLng(pos));
+//        }
         enableMyLocation();
 
     }
