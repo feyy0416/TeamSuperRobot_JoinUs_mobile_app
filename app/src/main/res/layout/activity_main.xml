@@ -344,5 +344,6 @@
         android:layout_height="56dp"
         android:id="@+id/bottom_nav"
         android:layout_alignParentBottom="true"
+        android:visibility="invisible"
         app:menu="@menu/bottom_nav_menu"/>
 </RelativeLayout>

@@ -47,6 +47,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -116,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
                                 progressBar.setProgress(timer);
                                 if (timer>8){
                                     progressBar.setVisibility(View.GONE);
-
+                                    bottomNavigationView.setVisibility(View.VISIBLE);
                                 }
                             }
                         });
@@ -166,8 +168,53 @@ public class MainActivity extends AppCompatActivity {
                                 Event e = dataSnapshot.getValue(Event.class);
                                 recEventList.add(e);
 
-
                             }
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    while (timer<10){
+                                        timer++;
+                                        try{
+                                            runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    progressBar.setProgress(timer);
+                                                    if (timer> 9){
+                                                        Collections.sort(recEventList, new Comparator<Event>() {
+                                                            @Override
+                                                            public int compare(Event event1, Event event2) {
+                                                                double lat1 = event1.getLatitude();
+                                                                double lon1 = event1.getLongitude();
+                                                                double lat2 = event2.getLatitude();
+                                                                double lon2 = event2.getLongitude();
+                                                                return (int) (Utils.getDistance(latitude, longitude, lat1, lon1)
+                                                                        - Utils.getDistance(latitude, longitude, lat2, lon2));
+                                                            }
+                                                        });
+                                                    }
+                                                }
+                                            });
+                                            Thread.sleep(80);
+                                        }catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                    }
+                                    timer= 0;
+                                }
+
+                            }).start();
+                            Collections.sort(recEventList, new Comparator<Event>() {
+                                @Override
+                                public int compare(Event event1, Event event2) {
+                                    double lat1 = event1.getLatitude();
+                                    double lon1 = event1.getLongitude();
+                                    double lat2 = event2.getLatitude();
+                                    double lon2 = event2.getLongitude();
+                                    return (int) (Utils.getDistance(latitude, longitude, lat1, lon1)
+                                            - Utils.getDistance(latitude, longitude, lat2, lon2));
+                                }
+                            });
                         }
 //                        eventList.sort(Comparator.comparing(o -> o.getDistance()));
 
