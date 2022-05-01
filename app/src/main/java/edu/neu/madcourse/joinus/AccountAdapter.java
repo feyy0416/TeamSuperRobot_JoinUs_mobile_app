@@ -30,7 +30,7 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountHolder>{
     @NonNull
     @Override
     public AccountHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_event_card, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.event_card_b, parent, false);
         return new AccountHolder(view);
     }
 
@@ -42,7 +42,6 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountHolder>{
         holder.time.setText(currentEvent.getTime());
         holder.title.setText(currentEvent.getTitle());
         holder.description.setText(currentEvent.getDescription());
-        holder.distance.setText("- -");
         if ("Cooking".equals(currentEvent.getCategory())) {
             holder.image.setImageResource(R.drawable.img1);
         }
@@ -55,11 +54,6 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountHolder>{
         if ("Other".equals(currentEvent.getCategory())) {
             holder.image.setImageResource(R.drawable.img4);
         }
-//        try {
-//            holder.distance.setText(Utils.getCityName(currentEvent.getLatitude(), currentEvent.getLongitude()));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
 
 
         holder.event_card.setOnClickListener(new View.OnClickListener() {
