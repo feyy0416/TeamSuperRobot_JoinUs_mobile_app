@@ -128,10 +128,12 @@ public class MapsActivity extends AppCompatActivity
                                 Event event = dataSnapshot.getValue(Event.class);
                                 eventList.add(event);
                                 LatLng pos = new LatLng(event.getLatitude(), event.getLongitude());
-                                Log.d("test marker", String.valueOf(event.getLatitude()));
+//                                Log.d("test marker", String.valueOf(event.getLatitude()));
+                                String markerTitle = "Event name: "+ event.getTitle()+
+                                        "\nCategory: "+ event.getCategory();
                                 mMap.addMarker(new MarkerOptions()
                                         .position(pos)
-                                        .title(event.getTitle()));
+                                        .title(markerTitle));
                             }
                         }
 //                        eventList.sort(Comparator.comparing(o -> o.getDistance()));

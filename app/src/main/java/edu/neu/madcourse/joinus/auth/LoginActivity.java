@@ -49,8 +49,10 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        Utils.setInputReset(etLoginEmail);
-        Utils.setInputReset(etLoginPassword);
+        etLoginEmail.setSelectAllOnFocus(true);
+//        etLoginPassword.setSelectAllOnFocus(true);
+//        Utils.setInputReset(etLoginEmail);
+//        Utils.setInputReset(etLoginPassword);
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
