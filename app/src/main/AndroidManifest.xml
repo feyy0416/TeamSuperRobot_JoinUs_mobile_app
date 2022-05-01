@@ -61,7 +61,8 @@
             android:label="Search for events" />
         <activity
             android:name=".auth.LoginActivity"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
