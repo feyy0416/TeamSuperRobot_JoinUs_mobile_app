@@ -8,6 +8,11 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.SystemClock;
+import android.view.View;
+import android.view.ViewTreeObserver;
+import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.Manifest;
 import android.content.Intent;
@@ -50,6 +55,7 @@ public class MapsActivity extends AppCompatActivity
     private MapsAdapter mapsAdapter;
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager rLayoutManger;
+    private View mapView;
     BottomNavigationView bottomNavigationView;
 
     private DatabaseReference mDatabase;
@@ -57,7 +63,8 @@ public class MapsActivity extends AppCompatActivity
 
     private double currentLatitude;
     private double currentLongitude;
-
+    ProgressBar progressBar;
+    private int timer;
 
     /**
      * Request code for location permission request.
@@ -126,6 +133,41 @@ public class MapsActivity extends AppCompatActivity
                     public void onCancelled(DatabaseError databaseError) {
                     }
                 });
+//        mapView = findViewById(R.id.map_frame);
+//        mapView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+//            @Override
+//            public void onGlobalLayout() {
+//                SystemClock.sleep(1000);
+//                progressBar.setVisibility(View.GONE);
+//            }
+//        });
+        progressBar = findViewById(R.id.pBar);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (timer<10){
+                    timer++;
+                    try{
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressBar.setProgress(timer);
+                                if (timer>8){
+                                    progressBar.setVisibility(View.GONE);
+
+                                }
+                            }
+                        });
+                        Thread.sleep(200);
+                    }catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+                timer= 0;
+            }
+
+        }).start();
 
     }
 
@@ -214,6 +256,7 @@ public class MapsActivity extends AppCompatActivity
 
         mMap.setOnMyLocationButtonClickListener(this);
         enableMyLocation();
+
     }
 
     private void enableMyLocation() {
