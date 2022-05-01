@@ -43,7 +43,7 @@
             <TextView
                 android:id="@+id/map_event_description"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="53dp"
                 android:layout_marginTop="5dp"
                 android:text="hiking with Mellisa at national forest coffee at national forest" />
         </LinearLayout>
