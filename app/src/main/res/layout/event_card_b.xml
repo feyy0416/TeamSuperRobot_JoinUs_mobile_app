@@ -5,11 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="340dp"
     android:layout_height="wrap_content"
+    app:cardCornerRadius="18dp"
+    app:cardBackgroundColor="#EFEFEF"
     tools:context=".AccountActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
         android:layout_centerHorizontal="true">
         <ImageView
             android:id="@+id/event_img_b"

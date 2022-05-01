@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.neu.madcourse.joinus.auth.LoginActivity;
+import edu.neu.madcourse.joinus.util.SpacingRcView;
 
 public class AccountActivity extends AppCompatActivity {
 
@@ -158,6 +159,8 @@ public class AccountActivity extends AppCompatActivity {
         accAdapter = new AccountAdapter(eventList, this);
         recyclerView.setAdapter(accAdapter);
         recyclerView.setLayoutManager(rLayoutManger);
+        SpacingRcView spacing = new SpacingRcView(15);
+        recyclerView.addItemDecoration(spacing);
 
     }
 
