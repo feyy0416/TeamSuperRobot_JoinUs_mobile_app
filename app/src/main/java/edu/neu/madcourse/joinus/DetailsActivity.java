@@ -35,6 +35,7 @@ public class DetailsActivity extends AppCompatActivity {
     private TextView longitude;
     private TextView email;
     private String eventId;
+    private Event event;
     ImageButton btn_back;
     BottomNavigationView bottomNavigationView;
 
@@ -69,6 +70,7 @@ public class DetailsActivity extends AppCompatActivity {
                             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                 Event e = dataSnapshot.getValue(Event.class);
                                 if (eventId.equals(e.getEventId())){
+                                    event = e;
                                     announcer.setText(e.getAnnouncer());
                                     title.setText(e.getTitle());
                                     Log.d("111111111111111122222","title set");
@@ -125,8 +127,21 @@ public class DetailsActivity extends AppCompatActivity {
                         item.setChecked(true);
                         return true;
                     case R.id.menu_share:
-                        Toast.makeText(DetailsActivity.this, "Share, coming soon!",
-                                Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(DetailsActivity.this, "Share, coming soon!",
+//                                Toast.LENGTH_SHORT).show();
+                        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
+                        sharingIntent.setType("text/plain");
+//                        event.getTitle()
+                        String shareBody = "Hi, I've found an interesting event you may like, we" +
+                                " call it: <"+ event.getTitle()+
+                                ">. And you can contact the host with: " +
+                                event.getEmail();
+
+
+                        // passing body of the content
+                        sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);
+                        startActivity(Intent.createChooser(sharingIntent, "Share using"));
+
                         item.setChecked(true);
                         return true;
 
