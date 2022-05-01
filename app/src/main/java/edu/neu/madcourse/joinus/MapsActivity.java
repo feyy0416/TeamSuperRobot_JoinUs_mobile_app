@@ -128,10 +128,12 @@ public class MapsActivity extends AppCompatActivity
                                 Event event = dataSnapshot.getValue(Event.class);
                                 eventList.add(event);
                                 LatLng pos = new LatLng(event.getLatitude(), event.getLongitude());
-                                Log.d("test marker", String.valueOf(event.getLatitude()));
+//                                Log.d("test marker", String.valueOf(event.getLatitude()));
+                                String markerTitle = "Event name: "+ event.getTitle()+
+                                        "\nCategory: "+ event.getCategory();
                                 mMap.addMarker(new MarkerOptions()
                                         .position(pos)
-                                        .title(event.getTitle()));
+                                        .title(markerTitle));
                             }
                         }
 //                        eventList.sort(Comparator.comparing(o -> o.getDistance()));
@@ -268,7 +270,7 @@ public class MapsActivity extends AppCompatActivity
                         double lat = eventList.get(position).getLatitude();
                         double lon = eventList.get(position).getLongitude();
                         LatLng loc = new LatLng(lat, lon);
-                        mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 15));
 //                        Toast.makeText(MapsActivity.this,"Click "+eventList.get(position),Toast.LENGTH_SHORT).show();
                     }
                 }));
