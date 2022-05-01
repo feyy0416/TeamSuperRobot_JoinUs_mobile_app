@@ -81,6 +81,7 @@ public class EventActivity extends AppCompatActivity {
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot snapshot) {
+                        eventList = new ArrayList<>();
                         if (snapshot.hasChildren()) {
                             for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                                 Event e = dataSnapshot.getValue(Event.class);

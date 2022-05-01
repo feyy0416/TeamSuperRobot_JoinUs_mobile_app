@@ -67,40 +67,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        btn_test = findViewById(R.id.btn_test);
-        btn_test.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, MapsActivity.class);
-                startActivity(intent);
-            }
-        });
-        btn_testEvent = findViewById(R.id.btn_testEvent);
-        btn_testEvent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, EventActivity.class);
-                startActivity(intent);
-            }
-        });
-        Button btn_testAdd = findViewById(R.id.btn_testAddEvent);
-        btn_testAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, AddEventActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-        btn_test_detail = findViewById(R.id.btn_test_detail);
-        btn_test_detail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, DetailsActivity.class);
-                startActivity(intent);
-            }
-        });
 
     }
 

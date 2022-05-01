@@ -16,10 +16,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.UUID;
 
+import edu.neu.madcourse.joinus.Event;
 import edu.neu.madcourse.joinus.R;
 import edu.neu.madcourse.joinus.util.Utils;
 
@@ -31,6 +37,8 @@ public class SignupActivity extends AppCompatActivity {
     EditText etUsername;
     FirebaseAuth mAuth;
     FirebaseDatabase mDatabase;
+
+    private DatabaseReference database;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +61,9 @@ public class SignupActivity extends AppCompatActivity {
         btn_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                signup();
+
+                    signup();
+
                 /*if (etPassword.getText().toString().equals(repeatPassword.getText().toString())){
                     signup();
                 }else {
