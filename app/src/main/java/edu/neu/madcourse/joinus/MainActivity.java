@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             }
                         });
-                        Thread.sleep(100);
+                        Thread.sleep(80);
                     }catch (InterruptedException e) {
                         e.printStackTrace();
                     }
