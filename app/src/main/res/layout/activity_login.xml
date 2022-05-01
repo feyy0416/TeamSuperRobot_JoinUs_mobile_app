@@ -79,27 +79,28 @@
                 app:layout_constraintTop_toBottomOf="@+id/et_email_input"
                 app:layout_constraintVertical_bias="0.017" />
 
-            <TextView
-                android:id="@+id/link_forgot_password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="10dp"
-                android:text="Forgot Password?"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btn_sign_up"
-                app:layout_constraintVertical_bias="0.0" />
+<!--            <TextView-->
+<!--                android:id="@+id/link_forgot_password"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="40dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:text="Forgot Password?"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.0"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/btn_sign_up"-->
+<!--                app:layout_constraintVertical_bias="0.0" />-->
 
             <TextView
                 android:id="@+id/link_sign_up"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:layout_marginEnd="40dp"
-                android:text="Sign Up"
+
+                android:text="No Account? Sign Up Here"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -115,10 +116,11 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="40dp"
+                android:autofillHints="name@example.com"
                 android:ems="10"
                 android:inputType="textEmailAddress"
                 android:minHeight="48dp"
-                android:hint="name@example.com"
+                android:text="name@example.com"
                 android:textColor="#787676"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -133,10 +135,11 @@
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="40dp"
+                android:autofillHints="1234567891011"
                 android:ems="10"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
-                android:hint="password"
+                android:text="1234567891011"
                 android:textColor="#787676"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
