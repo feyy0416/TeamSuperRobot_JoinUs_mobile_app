@@ -36,6 +36,8 @@ public class MapsAdapter extends RecyclerView.Adapter<MapsHolder> implements Fil
         this.list = list;
         listFull = new ArrayList<>(list);
         this.mContext = mContext;
+        this.currentLatitude = currentLatitude;
+        this.currentLongitude = currentLongitude;
     }
     @NonNull
     @Override
@@ -50,13 +52,13 @@ public class MapsAdapter extends RecyclerView.Adapter<MapsHolder> implements Fil
         Event currentEvent = list.get(position);
         holder.title.setText(currentEvent.getTitle());
         holder.description.setText(currentEvent.getDescription());
-        double distance = distance(currentEvent.getLatitude(), currentLatitude, currentEvent.getLongitude(), currentLongitude);
-        double distanceInKm = Math.round((distance / 1000) * 100.0) / 100.0;
+
+        double distance = Utils.getDistance(currentLatitude, currentLongitude,
+                currentEvent.getLatitude(), currentEvent.getLongitude());
+        double distanceInKm = Math.round((distance ) * 100.0) / 100.0;
         currentEvent.setDistance(distanceInKm);
-//        double distanceInKm = Utils.getDistance(currentLatitude, currentLongitude,
-//                currentEvent.getLatitude(), currentEvent.getLongitude());
-//        currentEvent.setDistance(distanceInKm);
-        Log.d("1111111111111111112",Double.toString(currentEvent.getDistance()));
+
+//        Log.d("1111111111111111112",Double.toString(currentEvent.getDistance()));
         holder.distance.setText(Double.toString(distanceInKm) + " km");
         if ("Cooking".equals(currentEvent.getCategory())) {
             holder.image.setImageResource(R.drawable.img1);
@@ -82,12 +84,6 @@ public class MapsAdapter extends RecyclerView.Adapter<MapsHolder> implements Fil
             }
         });
 
-    }
-
-    private double distance(double lt1, double lt2, double ln1, double ln2) {
-        double x = lt1 * d2r;
-        double y = lt2 * d2r;
-        return Math.acos( Math.sin(x) * Math.sin(y) + Math.cos(x) * Math.cos(y) * Math.cos(d2r * (ln1 - ln2))) * d2km;
     }
 
     @Override

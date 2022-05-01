@@ -60,8 +60,9 @@ public class EventAdapter extends RecyclerView.Adapter<EventHolder> implements F
 
 //        double distance = distance(currentEvent.getLatitude(), currentLatitude, currentEvent.getLongitude(), currentLongitude);
 //        double distanceInKm = Math.round((distance / 1000) * 100.0) / 100.0;
-        double distanceInKm = Utils.getDistance(currentLatitude, currentLongitude,
+        double distance = Utils.getDistance(currentLatitude, currentLongitude,
                 currentEvent.getLatitude(), currentEvent.getLongitude());
+        double distanceInKm = Math.round((distance ) * 100.0) / 100.0;
         currentEvent.setDistance(distanceInKm);
 
         Log.d("1111111111111111112",Double.toString(currentEvent.getDistance()));

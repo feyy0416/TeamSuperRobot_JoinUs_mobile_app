@@ -27,7 +27,7 @@ public class Utils {
     }
 
     public static double getDistance(double lat1,
-                                  double lat2, double lon1,
+                                  double lon1, double lat2,
                                   double lon2)
     {
 
