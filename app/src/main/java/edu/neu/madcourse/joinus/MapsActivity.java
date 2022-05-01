@@ -270,7 +270,7 @@ public class MapsActivity extends AppCompatActivity
                         double lat = eventList.get(position).getLatitude();
                         double lon = eventList.get(position).getLongitude();
                         LatLng loc = new LatLng(lat, lon);
-                        mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(loc, 15));
 //                        Toast.makeText(MapsActivity.this,"Click "+eventList.get(position),Toast.LENGTH_SHORT).show();
                     }
                 }));
