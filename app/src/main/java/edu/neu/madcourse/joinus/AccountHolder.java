@@ -13,16 +13,14 @@ public class AccountHolder extends RecyclerView.ViewHolder{
     public TextView time;
     public TextView description;
     public ImageView image;
-    public TextView distance;
     public CardView event_card;
 
     public AccountHolder(View eventView){
         super(eventView);
-        title = eventView.findViewById(R.id.event_title);
-        time = eventView.findViewById(R.id.event_time);
-        description = eventView.findViewById(R.id.map_event_description);
-        image = eventView.findViewById(R.id.event_img);
-        distance = eventView.findViewById(R.id.event_location);
-        event_card = eventView.findViewById(R.id.event_card);
+        title = eventView.findViewById(R.id.event_title_b);
+        time = eventView.findViewById(R.id.event_time_b);
+        description = eventView.findViewById(R.id.map_event_description_b);
+        image = eventView.findViewById(R.id.event_img_b);
+        event_card = eventView.findViewById(R.id.event_card_b);
     }
 }
