@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -252,6 +253,25 @@ public class MapsActivity extends AppCompatActivity
         mapsAdapter = new MapsAdapter(eventList, this, currentLatitude, currentLongitude);
         recyclerView.setAdapter(mapsAdapter);
         recyclerView.setLayoutManager(rLayoutManger);
+        recyclerView.addOnItemTouchListener(new RecyclerViewClickListener(this, recyclerView,
+                new RecyclerViewClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Intent intent = new Intent(MapsActivity.this, DetailsActivity.class);
+                        intent.putExtra("eventId", eventList.get(position).getEventId());
+                        startActivity(intent);
+
+                    }
+
+                    @Override
+                    public void onItemLongClick(View view, int position) {
+                        double lat = eventList.get(position).getLatitude();
+                        double lon = eventList.get(position).getLongitude();
+                        LatLng loc = new LatLng(lat, lon);
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
+//                        Toast.makeText(MapsActivity.this,"Click "+eventList.get(position),Toast.LENGTH_SHORT).show();
+                    }
+                }));
     }
 
     /**
@@ -352,6 +372,7 @@ public class MapsActivity extends AppCompatActivity
         PermissionUtils.PermissionDeniedDialog
                 .newInstance(true).show(getSupportFragmentManager(), "dialog");
     }
+
 
 
 }
