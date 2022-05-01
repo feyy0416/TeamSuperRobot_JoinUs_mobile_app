@@ -132,8 +132,8 @@ public class DetailsActivity extends AppCompatActivity {
                         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
                         sharingIntent.setType("text/plain");
 //                        event.getTitle()
-                        String shareBody = "Hi, I've found an interesting event you may like, we" +
-                                " call it: <"+ event.getTitle()+
+                        String shareBody = "Hi, I've found an interesting event you may like, " +
+                                "it's called : <"+ event.getTitle()+
                                 ">. And you can contact the host with: " +
                                 event.getEmail();
 
