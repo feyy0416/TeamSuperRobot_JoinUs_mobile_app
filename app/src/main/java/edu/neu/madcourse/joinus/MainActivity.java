@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -80,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
     private List<Event> sportEventList;
     private List<Event> recEventList;
     private DatabaseReference mDatabase;
+    private ProgressBar progressBar;
+    private int timer = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +101,35 @@ public class MainActivity extends AppCompatActivity {
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         locationRequest.setInterval(5000);
         locationRequest.setFastestInterval(2000);
+
+        //display progress bar
+        progressBar = findViewById(R.id.pBar);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (timer<10){
+                    timer++;
+                    try{
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressBar.setProgress(timer);
+                                if (timer>8){
+                                    progressBar.setVisibility(View.GONE);
+
+                                }
+                            }
+                        });
+                        Thread.sleep(100);
+                    }catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+                timer= 0;
+            }
+
+        }).start();
 
         //display current location
         cityName = findViewById(R.id.location);
