@@ -88,7 +88,17 @@ public class EventActivity extends AppCompatActivity {
                             }
                         }
 //                        eventList.sort(Comparator.comparing(o -> o.getDistance()));
-
+                        Collections.sort(eventList, new Comparator<Event>() {
+                            @Override
+                            public int compare(Event event1, Event event2) {
+                                double lat1 = event1.getLatitude();
+                                double lon1 = event1.getLongitude();
+                                double lat2 = event2.getLatitude();
+                                double lon2 = event2.getLongitude();
+                                return (int) (Utils.getDistance(currentLatitude, currentLongitude, lat1, lon1)
+                                        - Utils.getDistance(currentLatitude, currentLongitude, lat2, lon2));
+                            }
+                        });
                         createRecyclerView();
                     }
 
@@ -168,13 +178,14 @@ public class EventActivity extends AppCompatActivity {
 
 
     private void createRecyclerView(){
-        for (Event event : eventList){
-            Log.d("event test", event.getTitle());
-        }
-        Collections.sort(eventList, new SortPlaces(currentLatitude, currentLongitude));
-        for (Event event : eventList){
-            Log.d("event sorted!!!!!!!!!!!!!", String.valueOf(event.getDistance()));
-        }
+//        for (Event event : eventList){
+//            Log.d("event test", event.getTitle());
+//        }
+//        Collections.sort(eventList, new SortPlaces(currentLatitude, currentLongitude));
+//        for (Event event : eventList){
+//            Log.d("event sorted!!!!!!!!!!!!!", String.valueOf(event.getDistance()));
+//        }
+
         rLayoutManger = new LinearLayoutManager(this);
         recyclerView = findViewById(R.id.recyclerView_event_list);
         recyclerView.setHasFixedSize(true);

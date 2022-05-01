@@ -40,9 +40,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import edu.neu.madcourse.joinus.databinding.ActivityMapsBinding;
+import edu.neu.madcourse.joinus.util.Utils;
 
 public class MapsActivity extends AppCompatActivity
         implements OnMapReadyCallback,
@@ -126,6 +129,17 @@ public class MapsActivity extends AppCompatActivity
                             }
                         }
 //                        eventList.sort(Comparator.comparing(o -> o.getDistance()));
+                        Collections.sort(eventList, new Comparator<Event>() {
+                            @Override
+                            public int compare(Event event1, Event event2) {
+                                double lat1 = event1.getLatitude();
+                                double lon1 = event1.getLongitude();
+                                double lat2 = event2.getLatitude();
+                                double lon2 = event2.getLongitude();
+                                return (int) (Utils.getDistance(currentLatitude, currentLongitude, lat1, lon1)
+                                        - Utils.getDistance(currentLatitude, currentLongitude, lat2, lon2));
+                            }
+                        });
                         updateView();
                     }
 
@@ -247,7 +261,8 @@ public class MapsActivity extends AppCompatActivity
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
+//        Log.d("cur lat", String.valueOf(currentLatitude));
+//        Log.d("curlong", String.valueOf(currentLongitude));
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(currentLatitude, currentLongitude);
 //        mMap.addMarker(new MarkerOptions().position(sydney).title("User's position"));

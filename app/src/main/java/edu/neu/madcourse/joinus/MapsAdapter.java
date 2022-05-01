@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.List;
 
 import edu.neu.madcourse.joinus.auth.LoginActivity;
+import edu.neu.madcourse.joinus.util.Utils;
 
 public class MapsAdapter extends RecyclerView.Adapter<MapsHolder> implements Filterable {
     private List<Event> list;
@@ -52,6 +53,9 @@ public class MapsAdapter extends RecyclerView.Adapter<MapsHolder> implements Fil
         double distance = distance(currentEvent.getLatitude(), currentLatitude, currentEvent.getLongitude(), currentLongitude);
         double distanceInKm = Math.round((distance / 1000) * 100.0) / 100.0;
         currentEvent.setDistance(distanceInKm);
+//        double distanceInKm = Utils.getDistance(currentLatitude, currentLongitude,
+//                currentEvent.getLatitude(), currentEvent.getLongitude());
+//        currentEvent.setDistance(distanceInKm);
         Log.d("1111111111111111112",Double.toString(currentEvent.getDistance()));
         holder.distance.setText(Double.toString(distanceInKm) + " km");
         if ("Cooking".equals(currentEvent.getCategory())) {

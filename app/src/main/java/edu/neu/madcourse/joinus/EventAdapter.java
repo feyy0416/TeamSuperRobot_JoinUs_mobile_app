@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.neu.madcourse.joinus.util.Utils;
+
 public class EventAdapter extends RecyclerView.Adapter<EventHolder> implements Filterable {
 
     private List<Event> eventList = new ArrayList<>();
@@ -56,9 +58,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventHolder> implements F
         holder.title.setText(currentEvent.getTitle());
         holder.description.setText(currentEvent.getDescription());
 
-        double distance = distance(currentEvent.getLatitude(), currentLatitude, currentEvent.getLongitude(), currentLongitude);
-        double distanceInKm = Math.round((distance / 1000) * 100.0) / 100.0;
+//        double distance = distance(currentEvent.getLatitude(), currentLatitude, currentEvent.getLongitude(), currentLongitude);
+//        double distanceInKm = Math.round((distance / 1000) * 100.0) / 100.0;
+        double distanceInKm = Utils.getDistance(currentLatitude, currentLongitude,
+                currentEvent.getLatitude(), currentEvent.getLongitude());
         currentEvent.setDistance(distanceInKm);
+
         Log.d("1111111111111111112",Double.toString(currentEvent.getDistance()));
         holder.distance.setText(Double.toString(distanceInKm) + " km");
         if ("Cooking".equals(currentEvent.getCategory())) {
