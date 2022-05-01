@@ -30,8 +30,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.neu.madcourse.joinus.auth.LoginActivity;
-import edu.neu.madcourse.joinus.auth.SignupActivity;
-import edu.neu.madcourse.joinus.auth.User;
 
 public class AccountActivity extends AppCompatActivity {
 
