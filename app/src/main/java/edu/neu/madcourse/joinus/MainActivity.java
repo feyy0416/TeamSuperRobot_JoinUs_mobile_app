@@ -368,7 +368,8 @@ public class MainActivity extends AppCompatActivity {
                             latitude = locationResult.getLocations().get(position).getLatitude();
                             longitude = locationResult.getLocations().get(position).getLongitude();
 
-
+                            Log.d("22222222222222",Double.toString(latitude));
+                            Log.d("22222222222222",Double.toString(longitude));
                             /*List<Address> addresses = null;
                             try {
                                 addresses = geocoder.getFromLocation(latitude,

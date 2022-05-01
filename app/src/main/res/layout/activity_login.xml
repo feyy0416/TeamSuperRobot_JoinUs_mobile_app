@@ -6,14 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".auth.LoginActivity">
 
-    <Button
-        android:id="@+id/btn_test_footbar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="details"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_test_detail" />
-
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="195dp"
@@ -158,43 +150,6 @@
         app:layout_constraintTop_toBottomOf="@+id/et_password_input1"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="DuplicateSpeakableTextCheck" />
-
-    <Button
-        android:id="@+id/btn_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="test map"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btn_test_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="details"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_test" />
-
-    <Button
-        android:id="@+id/btn_testEvent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="284dp"
-        android:text="test Event"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btn_testAddEvent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="120dp"
-        android:text="test Add Event"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

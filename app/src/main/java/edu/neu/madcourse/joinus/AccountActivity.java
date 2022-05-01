@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -139,6 +140,7 @@ public class AccountActivity extends AppCompatActivity {
     private void signOutUser() {
         Intent intent = new Intent(AccountActivity.this, LoginActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        Toast.makeText(getApplicationContext(), "Signed out", Toast.LENGTH_SHORT).show();
         startActivity(intent);
         finish();
     }
