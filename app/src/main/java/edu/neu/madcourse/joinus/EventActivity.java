@@ -31,6 +31,7 @@ import java.util.List;
 
 import edu.neu.madcourse.joinus.auth.LoginActivity;
 import edu.neu.madcourse.joinus.auth.User;
+import edu.neu.madcourse.joinus.util.SpacingRcView;
 import edu.neu.madcourse.joinus.util.Utils;
 
 public class EventActivity extends AppCompatActivity {
@@ -193,6 +194,9 @@ public class EventActivity extends AppCompatActivity {
         eventAdapter = new EventAdapter(eventList, this, currentLatitude, currentLongitude);
         recyclerView.setAdapter(eventAdapter);
         recyclerView.setLayoutManager(rLayoutManger);
+        SpacingRcView spacing = new SpacingRcView(15);
+        recyclerView.addItemDecoration(spacing);
+
 
     }
 

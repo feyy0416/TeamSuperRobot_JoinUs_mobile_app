@@ -21,7 +21,6 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountHolder>{
     private List<Event> eventList = new ArrayList<>();
     private Context mContext;
 
-
     public AccountAdapter(List<Event> eventList, Context mContext) {
         this.eventList = eventList;
         this.mContext = mContext;
