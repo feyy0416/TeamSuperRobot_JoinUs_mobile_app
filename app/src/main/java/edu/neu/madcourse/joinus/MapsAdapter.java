@@ -2,10 +2,13 @@ package edu.neu.madcourse.joinus;
 
 import static androidx.core.content.ContextCompat.startActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
@@ -72,17 +75,18 @@ public class MapsAdapter extends RecyclerView.Adapter<MapsHolder> implements Fil
         if ("Other".equals(currentEvent.getCategory())) {
             holder.image.setImageResource(R.drawable.img4);
         }
-        holder.map_event_card.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Context context = holder.map_event_card.getContext();
-                Intent intent = new Intent(context, DetailsActivity.class);
-                intent.putExtra("eventId", currentEvent.getEventId());
-                context.startActivity(intent);
-
-            }
-        });
+//
+//        holder.map_event_card.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                Context context = holder.map_event_card.getContext();
+//                Intent intent = new Intent(context, DetailsActivity.class);
+//                intent.putExtra("eventId", currentEvent.getEventId());
+//                context.startActivity(intent);
+//
+//            }
+//        });
 
     }
 
